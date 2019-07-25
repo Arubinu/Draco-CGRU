@@ -15,3 +15,6 @@
 
 ## Notes
 * Windows: To integrate a window in the grid (once it is unlocked), use the CTRL key.
+* Sub-Windows: For example, you can access Task windows by double-clicking on a Job.
+* Refresh: The active window has a higher refresh (visible thanks to the circle on the left side of the title bar).
+* Last Update: This time corresponds to that elapsed since the last completed query.
