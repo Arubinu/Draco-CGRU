@@ -1,0 +1,760 @@
+<div handlebars="toolbar">
+	<ul class="menu toolbar-menu">
+{{#each this}}
+		<li class="menu {{this.class}}">
+			{{trans this.name}}
+			<ul context-reference="top{{capitalize @key}}">
+				{{> menu-each this}}
+			</ul>
+		</li>
+{{/each}}
+
+		<li class="infos infos-type"><div></div></li>
+		<li class="infos infos-site" title="...">{{config 'site-name'}} v{{config 'site-version'}}<span class="infos-cgru"></span></li>
+		<li class="infos infos-server">...</li>
+	</ul>
+
+	<ul class="menu main-toolbar">
+		<li class="vddot"></li>
+		<li onclick-function="[&quot;login_user&quot;]" title="{{trans 'toolbar.file.login-user'}}"><img src="{{config 'source'}}images/user.png" /></li>
+		<li class="vsep"></li>
+		<li onclick-function="[&quot;app_refresh&quot;]" title="{{trans 'toolbar.file.app-refresh'}}"><img src="{{config 'source'}}images/dref.png" /></li>
+		<li name="new-panel" class="menu" title="{{trans 'toolbar.view.new-panel'}}">
+			<img src="{{config 'source'}}images/win.png" />
+			{{> menu-each-parent (config 'cell-menu-add')}}
+		</li>
+		<li name="lock-panels" title="{{trans 'toolbar.view.lock-panels'}}"><img src="{{config 'source'}}images/lock.png" /></li>
+		<li name="pinned-layouts" class="menu" title="{{trans 'toolbar.view.pinned-layouts'}}">
+			<img src="{{config 'source'}}images/flag.png" />
+			<ul>
+				<li><div class="icon"><img src="{{config 'source'}}images/flag.png" /></div>Layout1<div class="shortcut">Ctrl+1</div></li>
+				<li><div class="icon"><img src="{{config 'source'}}images/flag.png" /></div>Layout2<div class="shortcut">Ctrl+2</div></li>
+				<li><div class="icon"><img src="{{config 'source'}}images/flag.png" /></div>Normal<div class="shortcut">Ctrl+3</div></li>
+				<li><div class="icon"><img src="{{config 'source'}}images/pin.png" /></div>Pin Current Layout</li>
+				<li><div class="icon"><img src="{{config 'source'}}images/flag-rog.png" /></div>Edit Pinned Layouts</li>
+			</ul>
+		</li>
+		<li class="vsep"></li>
+		<li class="grid-edit disabled" grid-edit="add" grid-position="x"><img src="{{config 'source'}}images/columns-plus.png" /></li>
+		<li class="grid-edit disabled" grid-edit="remove" grid-position="x"><img src="{{config 'source'}}images/columns-minus.png" /></li>
+		<li class="grid-edit disabled" grid-edit="add" grid-position="y"><img src="{{config 'source'}}images/rows-plus.png" /></li>
+		<li class="grid-edit disabled" grid-edit="remove" grid-position="y"><img src="{{config 'source'}}images/rows-minus.png" /></li>
+	</ul>
+</div>
+
+<div handlebars="cell-container">
+	<div class="cell">
+		<div class="empty"><div>{{trans empty}}</div></div>
+		<div class="title">
+			<div class="refresh"></div>
+			<span class="text">{{trans untitled}}</span>
+			<span class="subtext"></span>
+			<div class="icon menu-icon close"><img src="{{config 'source'}}images/cross.png" /></div>
+			<div class="icon menu-icon detach"><img src="{{config 'source'}}images/dwin.png" /></div>
+		</div>
+		<div class="win"></div>
+		<div class="buttons">
+			<input type="button" value="{{trans 'close'}}" class="close" />
+		</div>
+		<div class="resize"></div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-arrow-other">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-filters">
+	<div class="win" cell-type="filters" cell-title="{{trans 'cell-filters.cell-name'}}">
+		<div class="input">
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<select name="filter-type">
+								<option value="new">{{trans 'cell-filters.filters.new'}}</option>
+								<option value="saved">{{trans 'cell-filters.filters.saved'}}</option>
+							</select>
+						</td>
+						<td>
+							<input type="text" name="filter-new" value="" placeholder="{{trans 'cell-filters.filters.placeholder'}}" />
+							<select name="filter-saved">
+								<option value="">{{trans 'cell-filters.filters.empty'}}</option>
+							</select>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="filter-table">
+				<table>
+					<tbody>
+						<tr row-template>
+							<td col-name="name">
+								<select name="filter-column">
+{{#each columns}}
+									<option value="{{array-get 0 this}}" param="{{or (array-get 1 this) '0'}}">{{trans (concat 'cell-' ../type '.columns.' (array-get 0 this))}}</option>
+{{/each}}
+								</select>
+							</td>
+							<td col-name="param"></td>
+							<td col-name="value"></td>
+							<td>
+								<input type="button" name="filter-remove" value="{{trans 'cell-filters.filters.remove'}}" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<select params-template="0">
+					<option value="contains">{{trans 'cell-filters.params.contains'}}</option>
+					<option value="not-contains">{{trans 'cell-filters.params.not-contains'}}</option>
+					<option value="equals">{{trans 'cell-filters.params.equals'}}</option>
+					<option value="not-equals">{{trans 'cell-filters.params.not-equals'}}</option>
+					<option value="starts-with">{{trans 'cell-filters.params.starts-with'}}</option>
+					<option value="ended-by">{{trans 'cell-filters.params.ended-by'}}</option>
+				</select>
+				<input type="text" value="" values-template="0" />
+				<select params-template="1">
+					<option value="equals">{{trans 'cell-filters.params.equals'}}</option>
+					<option value="not-equals">{{trans 'cell-filters.params.not-equals'}}</option>
+					<option value="less-than">{{trans 'cell-filters.params.less-than'}}</option>
+					<option value="greater-than">{{trans 'cell-filters.params.greater-than'}}</option>
+				</select>
+				<input type="number" value="0" values-template="1" />
+				<select params-template="2">
+					<option value="equals">{{trans 'cell-filters.params.equals'}}</option>
+					<option value="not-equals">{{trans 'cell-filters.params.not-equals'}}</option>
+					<option value="before">{{trans 'cell-filters.params.before'}}</option>
+					<option value="after">{{trans 'cell-filters.params.after'}}</option>
+				</select>
+				<input type="time" value="" step="1" placeholder="--:--:-- or --:--" values-template="2" />
+				<select params-template="3">
+					<option value="equals">{{trans 'cell-filters.params.equals'}}</option>
+					<option value="not-equals">{{trans 'cell-filters.params.not-equals'}}</option>
+					<option value="before">{{trans 'cell-filters.params.before'}}</option>
+					<option value="after">{{trans 'cell-filters.params.after'}}</option>
+				</select>
+				<input type="datetime-local" value="" step="1" placeholder="yyyy-mm-dd --:--:--" values-template="3" />
+				<select params-template="4">
+					<option value="equals">{{trans 'cell-filters.params.equals'}}</option>
+					<option value="not-equals">{{trans 'cell-filters.params.not-equals'}}</option>
+				</select>
+				<select values-template="4">
+					<option value="">{{trans 'cell-filters.values.empty'}}</option>
+{{#each (config 'states')}}
+	{{#if (and this (not-eq this '???'))}}
+					<option value="{{@key}}">{{trans this}}</option>
+	{{/if}}
+{{/each}}
+				</select>
+			</div>
+			<input type="button" name="filter-add" value="{{trans 'cell-filters.filters.add'}}" />
+		</div>
+
+		<div data-buttons="add">
+			<input name="confirm" type="button" value="{{trans 'confirm'}}" class="gray" />
+		</div>
+	</div>
+</div>
+
+<div handlebars="cell-graph">
+	<div>
+		<div class="pie-container">
+			<div class="pie"></div>
+			<div class="legend">
+{{#each (config 'states')}}
+	{{#if (and this (not-eq this '???'))}}
+		{{#if (in @key (or ../statutes '["DON","ERR","PAU","PPA"]'))}}
+				<div node-status="{{@key}}"><div></div><span>{{trans this}}</span></div>
+		{{/if}}
+	{{/if}}
+{{/each}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div handlebars="cell-confirm">
+	<div class="win" cell-type="confirm" cell-title="{{trans title}}">
+{{#if html}}
+		{{{html}}}
+{{else}}
+	{{#if input}}
+		<div class="text" style="height: initial;"><p>{{trans text}}</p></div>
+	{{else}}
+		<div class="text"><p>{{trans text}}</p></div>
+	{{/if}}
+{{/if}}
+{{#if input}}
+		<div class="input">
+	{{#each input.elements}}
+		{{#if (eq ../input.type 'radio')}}
+			<input type="radio" name="{{../id}}_{{this.name}}" value="{{this.value}}" />
+		{{else if (eq ../input.type 'checkbox')}}
+			<input type="checkbox" name="{{../id}}_{{this.name}}" value="{{this.value}}" />
+		{{else}}
+			<input type="text" name="{{../id}}_{{this.name}}" value="{{this.value}}" placeholder="{{trans this.placeholder}}" />
+		{{/if}}
+	{{/each}}
+		</div>
+{{/if}}
+		<div class="error hide"></div>
+{{#if button}}
+		<div data-buttons="add">
+			<input name="confirm" type="button" value="{{trans button}}" class="gray" />
+		</div>
+{{/if}}
+	</div>
+</div>
+
+<div handlebars="cell-login">
+	<div class="input">
+		<table style="margin: 5px; width: calc( 100% - ( 2 * 5px ) ); text-align: left;">
+			<tbody>
+				<tr>
+					<td>{{trans 'login-username'}}</td>
+					<td style="text-align: right;"><input type="text" name="login-username" value="{{username}}" /></td>
+				</tr>
+				<tr>
+					<td>{{trans 'login-uilevel'}}</td>
+					<td style="text-align: right;">
+						<select name="login-uilevel">
+							<option value=""></option>
+{{#each uilevels}}
+	{{#if (eq (lower ../uilevel) (lower this))}}
+							<option value="{{lower this}}" selected>{{capitalize this}}</option>
+	{{else}}
+							<option value="{{lower this}}">{{capitalize this}}</option>
+	{{/if}}
+{{/each}}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>{{trans 'login-hostname'}}</td>
+					<td style="text-align: right;"><input type="text" name="login-hostname" value="{{hostname}}" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div handlebars="cell-about">
+	<div class="input text-center">
+		<img src="{{config 'source'}}images/logo.png" />
+		<div class="name"><strong>{{config 'site-name'}}</strong> v{{config 'site-version'}}</div>
+		<div class="istextarea selectable changelog text-left" style="overflow-x: auto; margin: 10px auto 0px; width: calc( 100% - 10px );">{{config 'site-changelog'}}</div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-columns">
+	<ul>
+{{#each this}}
+		<li class="menu-check{{#if this.active}} active{{/if}}" col-name="{{@key}}">
+			<div class="icon">
+				<img src="{{config 'source'}}images/uncheck.png" />
+			</div>
+			{{this.text}}
+		</li>
+{{/each}}
+	</ul>
+</div>
+
+<div handlebars="cell-jobs">
+	<div class="win" cell-type="jobs" cell-title="{{trans 'cell-jobs.cell-name'}}" cell-filters="[[&quot;name&quot;],[&quot;user&quot;],[&quot;errors&quot;,1],[&quot;status&quot;,4],[&quot;running&quot;,2],[&quot;creation&quot;,3],[&quot;started&quot;,3],[&quot;done&quot;,3],[&quot;branch&quot;],[&quot;capacity&quot;,1],[&quot;priority&quot;,1]]">
+		<div class="subtitle">
+			<div class="icons">
+				<div class="icon menu-icon" context-right="cell-menu-arrow"><img src="{{config 'source'}}images/down.png" /></div>
+				<!--<div class="icon menu-icon"><img src="{{config 'source'}}images/user.png" /></div>-->
+				<div class="icon menu-icon" show-lateral="filters" title="{{trans 'filters'}}"><img src="{{config 'source'}}images/fun.png" /></div>
+				<div class="icon menu-icon graph" title="{{trans 'graph'}}"><img src="{{config 'source'}}images/circ.png" /></div>
+			</div>
+			<div class="infos"></div>
+			<div class="search"><input type="text" placeholder="{{trans 'search'}}" /></div>
+		</div>
+		<div class="frame frame-first" context-right="cell-menu-jobs-row">
+			<table col-storage="jobs" col-hides="branch" context-columns>
+				<thead>
+					<tr>
+						<th col-name="icon"></th>
+						<th col-name="name">{{trans 'cell-jobs.columns.name'}}</th>
+						<th col-name="user">{{trans 'cell-jobs.columns.user'}}</th>
+						<th col-name="errors">{{trans 'cell-jobs.columns.errors'}}</th>
+						<th col-name="progress">{{trans 'cell-jobs.columns.progress'}}</th>
+						<th col-name="status">{{trans 'cell-jobs.columns.status'}}</th>
+						<th col-name="running">{{trans 'cell-jobs.columns.running'}}</th>
+						<th col-name="render">{{trans 'cell-jobs.columns.render'}}</th>
+						<th col-name="creation">{{trans 'cell-jobs.columns.creation'}}</th>
+						<th col-name="started">{{trans 'cell-jobs.columns.started'}}</th>
+						<th col-name="done">{{trans 'cell-jobs.columns.done'}}</th>
+						<th col-name="branch">{{trans 'cell-jobs.columns.branch'}}</th>
+						<th col-name="capacity">{{trans 'cell-jobs.columns.capacity'}}</th>
+						<th col-name="priority">{{trans 'cell-jobs.columns.priority'}}</th>
+						<th col-name="details">{{trans 'cell-jobs.columns.details'}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr row-template>
+						<td class="col-icon"><img src="{{config 'source'}}images/void.png" /></td>
+						<td class="col-name"></td>
+						<td class="col-user"></td>
+						<td class="col-errors"></td>
+						<td class="col-progress">
+							<div class="progress"></div>
+							<div class="col-progress-text"></div>
+						</td>
+						<td class="col-status"></td>
+						<td class="col-running"></td>
+						<td class="col-render" style="min-width: fit-content;"></td>
+						<td class="col-creation"></td>
+						<td class="col-started"></td>
+						<td class="col-done"></td>
+						<td class="col-branch"></td>
+						<td class="col-capacity"></td>
+						<td class="col-priority"></td>
+						<td class="col-details"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="frame frame-lateral">
+			<div lateral="filters">{{trans 'filters'}}</div>
+		</div>
+		<div class="frame frame-circ" handlebars="cell-graph" handlebars-autoload></div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-jobs-row">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-menu-jobs-row-other">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-tasks">
+	<div class="win" cell-type="tasks" cell-title="{{trans 'cell-tasks.cell-name'}}" cell-filters="[[&quot;name&quot;],[&quot;starts&quot;,1],[&quot;errors&quot;,1],[&quot;status&quot;,4],[&quot;running&quot;,2],[&quot;started&quot;,3],[&quot;done&quot;,3],[&quot;host&quot;]]">
+		<div class="subtitle">
+			<div class="icons">
+				<div class="icon menu-icon" context-right="cell-menu-arrow"><img src="{{config 'source'}}images/down.png" /></div>
+				<div class="icon menu-icon" show-lateral="filters" title="{{trans 'filters'}}"><img src="{{config 'source'}}images/fun.png" /></div>
+				<div class="icon menu-icon graph" title="{{trans 'graph'}}"><img src="{{config 'source'}}images/circ.png" /></div>
+			</div>
+			<div class="infos"></div>
+			<div class="search"><input type="text" placeholder="{{trans 'search'}}" /></div>
+		</div>
+		<div class="frame frame-first" context-right="cell-menu-tasks-row">
+			<table col-storage="tasks" context-columns>
+				<thead>
+					<tr>
+						<th col-name="icon"></th>
+						<th col-name="name">{{trans 'cell-tasks.columns.name'}}</th>
+						<th col-name="starts">{{trans 'cell-tasks.columns.starts'}}</th>
+						<th col-name="errors">{{trans 'cell-tasks.columns.errors'}}</th>
+						<th col-name="status">{{trans 'cell-tasks.columns.status'}}</th>
+						<th col-name="running">{{trans 'cell-tasks.columns.running'}}</th>
+						<th col-name="started">{{trans 'cell-tasks.columns.started'}}</th>
+						<th col-name="done">{{trans 'cell-tasks.columns.done'}}</th>
+						<th col-name="host">{{trans 'cell-tasks.columns.host'}}</th>
+						<th col-name="details">{{trans 'cell-tasks.columns.details'}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr row-template>
+						<td class="col-icon"><img src="{{config 'source'}}images/void.png" /></td>
+						<td class="col-name"></td>
+						<td class="col-starts"></td>
+						<td class="col-errors"></td>
+						<td class="col-status"></td>
+						<td class="col-running"></td>
+						<td class="col-started"></td>
+						<td class="col-done"></td>
+						<td class="col-host"></td>
+						<td class="col-details"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="frame frame-lateral">
+			<div lateral="filters">{{trans 'filters'}}</div>
+		</div>
+		<div class="frame frame-circ" handlebars="cell-graph" handlebars-data='{"statutes":["DON","RUN","ERR"]}' handlebars-autoload></div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-tasks-row">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-menu-tasks-row-other">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-task-details">
+	<div class="win" cell-type="task-details" cell-title="{{trans 'cell-task-details.cell-name'}}">
+		<div class="subtitle">
+			<div class="icons">
+				<div class="icon menu-icon task-skip" title="{{trans 'cell-task-details.skip'}}"><img src="{{config 'source'}}images/share.png" /></div>
+				<div class="icon menu-icon task-restart" title="{{trans 'cell-task-details.restart'}}"><img src="{{config 'source'}}images/ref.png" /></div>
+			</div>
+			<div class="infos"></div>
+			<div class="rinfos">
+				{{trans 'cell-task-details.output_num'}}:
+				<select name="output_num" style="width: 65px; text-align: center;">
+					<option value="0">0</option>
+				</select>
+			</div>
+		</div>
+		<div class="frame frame-first frame-tabs" context-right="cell-menu-task-details-row">
+			<ul>
+				<li tab-target="exec" class="active">{{trans 'cell-task-details.tabs.exec'}}</li>
+				<li tab-target="output">{{trans 'cell-task-details.tabs.output'}}</li>
+				<li tab-target="log">{{trans 'cell-task-details.tabs.log'}}</li>
+				<li tab-target="error_hosts">{{trans 'cell-task-details.tabs.error_hosts'}}</li>
+				<li tab-target="listen">{{trans 'cell-task-details.tabs.listen'}}</li>
+			</ul>
+			<div tab-id="exec" class="inside input active">
+				<div class="flex">{{trans 'cell-task-details.exec.name'}}: <input type="text" name="name" readonly/></div>
+				<div class="flex">
+					<div class="flex">{{trans 'cell-task-details.exec.capacity'}}: <input type="text" name="capacity" readonly/></div>
+					<div class="flex">{{trans 'cell-task-details.exec.service'}}: <input type="text" name="service" readonly/></div>
+					<div class="flex">{{trans 'cell-task-details.exec.parser'}}: <input type="text" name="parser" readonly/></div>
+				</div>
+				<div class="flex">{{trans 'cell-task-details.exec.directory'}}: <input type="text" name="directory" readonly/></div>
+				<div>{{trans 'cell-task-details.exec.raw'}}: <br /><div name="raw" class="istextarea selectable" style="overflow-x: auto;"></div></div>
+			</div>
+			<div tab-id="output" class="inside pre selectable"></div>
+			<div tab-id="log" class="inside pre selectable"></div>
+			<div tab-id="error_hosts" class="inside pre selectable"></div>
+			<div tab-id="listen" class="inside pre selectable"></div>
+		</div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-task-details-row">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-menu-task-details-row-other">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-monitors">
+	<div class="win" cell-type="monitors" cell-title="{{trans 'cell-monitors.cell-name'}}" cell-filters="[[&quot;id&quot;,1],[&quot;name&quot;],[&quot;uid&quot;],[&quot;user&quot;],[&quot;ip&quot;],[&quot;register&quot;,3],[&quot;launch&quot;,3],[&quot;update&quot;,3],[&quot;activity&quot;,3],[&quot;host&quot;],[&quot;events&quot;],[&quot;priority&quot;,1]]">
+		<div class="subtitle">
+			<div class="icons">
+				<div class="icon menu-icon" context-right="cell-menu-arrow"><img src="{{config 'source'}}images/down.png" /></div>
+			</div>
+			<div class="infos"></div>
+			<div class="search"><input type="text" placeholder="{{trans 'search'}}" /></div>
+		</div>
+		<div class="frame frame-first" context-right="cell-menu-monitors-row">
+			<table col-storage="monitors" context-columns>
+				<thead>
+					<tr>
+						<th col-name="id">{{trans 'cell-monitors.columns.id'}}</th>
+						<th col-name="name">{{trans 'cell-monitors.columns.name'}}</th>
+						<th col-name="uid">{{trans 'cell-monitors.columns.uid'}}</th>
+						<th col-name="user">{{trans 'cell-monitors.columns.user'}}</th>
+						<th col-name="ip">{{trans 'cell-monitors.columns.ip'}}</th>
+						<th col-name="register">{{trans 'cell-monitors.columns.register'}}</th>
+						<th col-name="launch">{{trans 'cell-monitors.columns.launch'}}</th>
+						<th col-name="update">{{trans 'cell-monitors.columns.update'}}</th>
+						<th col-name="activity">{{trans 'cell-monitors.columns.activity'}}</th>
+						<th col-name="host">{{trans 'cell-monitors.columns.host'}}</th>
+						<th col-name="events">{{trans 'cell-monitors.columns.events'}}</th>
+						<th col-name="priority">{{trans 'cell-monitors.columns.priority'}}</th>
+						<th col-name="details">{{trans 'cell-monitors.columns.details'}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr row-template>
+						<td class="col-id"></td>
+						<td class="col-name"></td>
+						<td class="col-uid"></td>
+						<td class="col-user"></td>
+						<td class="col-ip"></td>
+						<td class="col-register"></td>
+						<td class="col-launch"></td>
+						<td class="col-update"></td>
+						<td class="col-activity"></td>
+						<td class="col-host"></td>
+						<td class="col-events"></td>
+						<td class="col-priority"></td>
+						<td class="col-details"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-monitors-row">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-menu-monitors-row-other">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-renders">
+	<div class="win" cell-type="renders" cell-title="{{trans 'cell-renders.cell-name'}}" cell-filters="[[&quot;id&quot;,1],[&quot;name&quot;],[&quot;user&quot;],[&quot;status&quot;,4],[&quot;os&quot;],[&quot;ip&quot;],[&quot;mac&quot;],[&quot;interface&quot;],[&quot;tasks&quot;],[&quot;register&quot;,3],[&quot;launch&quot;,3],[&quot;update&quot;,3],[&quot;idle&quot;,3],[&quot;busy&quot;,3],[&quot;wol-op&quot;,3],[&quot;idle-cpu&quot;,1],[&quot;busy-cpu&quot;,1],[&quot;idle-mem&quot;,1],[&quot;busy-mem&quot;,1],[&quot;idle-swp&quot;,1],[&quot;busy-swp&quot;,1],[&quot;idle-hddgb&quot;,1],[&quot;busy-hddgb&quot;,1],[&quot;idle-hddio&quot;,1],[&quot;busy-hddio&quot;,1],[&quot;capacity&quot;,1],[&quot;priority&quot;,1]]">
+		<div class="subtitle">
+			<div class="icons">
+				<div class="icon menu-icon" context-right="cell-menu-arrow"><img src="{{config 'source'}}images/down.png" /></div>
+				<div class="icon menu-icon graph" title="{{trans 'graph'}}"><img src="{{config 'source'}}images/circ.png" /></div>
+			</div>
+			<div class="infos"></div>
+			<div class="search"><input type="text" placeholder="{{trans 'search'}}" /></div>
+		</div>
+		<div class="frame frame-first" context-right="cell-menu-renders-row">
+			<table col-storage="renders" col-hides="interface" context-columns>
+				<thead>
+					<tr>
+						<th col-name="id">{{trans 'cell-renders.columns.id'}}</th>
+						<th col-name="name">{{trans 'cell-renders.columns.name'}}</th>
+						<th col-name="user">{{trans 'cell-renders.columns.user'}}</th>
+						<th col-name="status">{{trans 'cell-renders.columns.status'}}</th>
+						<th col-name="os">{{trans 'cell-renders.columns.os'}}</th>
+						<th col-name="ip">{{trans 'cell-renders.columns.ip'}}</th>
+						<th col-name="mac">{{trans 'cell-renders.columns.mac'}}</th>
+						<th col-name="interface">{{trans 'cell-renders.columns.interface'}}</th>
+						<th col-name="tasks">{{trans 'cell-renders.columns.tasks'}}</th>
+						<th col-name="register">{{trans 'cell-renders.columns.register'}}</th>
+						<th col-name="launch">{{trans 'cell-renders.columns.launch'}}</th>
+						<th col-name="update">{{trans 'cell-renders.columns.update'}}</th>
+						<th col-name="idle">{{trans 'cell-renders.columns.idle'}}</th>
+						<th col-name="busy">{{trans 'cell-renders.columns.busy'}}</th>
+						<th col-name="wol-op">{{trans 'cell-renders.columns.wol-op'}}</th>
+						<th col-name="idle-cpu">{{trans 'cell-renders.columns.idle-cpu'}}</th>
+						<th col-name="busy-cpu">{{trans 'cell-renders.columns.busy-cpu'}}</th>
+						<th col-name="idle-mem">{{trans 'cell-renders.columns.idle-mem'}}</th>
+						<th col-name="busy-mem">{{trans 'cell-renders.columns.busy-mem'}}</th>
+						<th col-name="idle-swp">{{trans 'cell-renders.columns.idle-swp'}}</th>
+						<th col-name="busy-swp">{{trans 'cell-renders.columns.busy-swp'}}</th>
+						<th col-name="idle-hddgb">{{trans 'cell-renders.columns.idle-hddgb'}}</th>
+						<th col-name="busy-hddgb">{{trans 'cell-renders.columns.busy-hddgb'}}</th>
+						<th col-name="idle-hddio">{{trans 'cell-renders.columns.idle-hddio'}}</th>
+						<th col-name="busy-hddio">{{trans 'cell-renders.columns.busy-hddio'}}</th>
+						<th col-name="capacity">{{trans 'cell-renders.columns.capacity'}}</th>
+						<th col-name="priority">{{trans 'cell-renders.columns.priority'}}</th>
+						<th col-name="details">{{trans 'cell-renders.columns.details'}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr row-template>
+						<td class="col-id"></td>
+						<td class="col-name"></td>
+						<td class="col-user"></td>
+						<td class="col-status"></td>
+						<td class="col-os"></td>
+						<td class="col-ip"></td>
+						<td class="col-mac"></td>
+						<td class="col-interface"></td>
+						<td class="col-tasks"></td>
+						<td class="col-register"></td>
+						<td class="col-launch"></td>
+						<td class="col-update"></td>
+						<td class="col-idle"></td>
+						<td class="col-busy"></td>
+						<td class="col-wol-op"></td>
+						<td class="col-idle-cpu"></td>
+						<td class="col-busy-cpu"></td>
+						<td class="col-idle-mem"></td>
+						<td class="col-busy-mem"></td>
+						<td class="col-idle-swp"></td>
+						<td class="col-busy-swp"></td>
+						<td class="col-idle-hddgb"></td>
+						<td class="col-busy-hddgb"></td>
+						<td class="col-idle-hddio"></td>
+						<td class="col-busy-hddio"></td>
+						<td class="col-capacity"></td>
+						<td class="col-priority"></td>
+						<td class="col-details"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="frame frame-lateral"></div>
+		<div class="frame frame-circ" handlebars="cell-graph" handlebars-data='{"statutes":["ONL","RUN","OFF"]}' handlebars-autoload></div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-renders-row">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-menu-renders-row-other">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-users">
+	<div class="win" cell-type="users" cell-title="{{trans 'cell-users.cell-name'}}" cell-filters="[[&quot;id&quot;,1],[&quot;user&quot;],[&quot;jobs&quot;,1],[&quot;register&quot;,3],[&quot;activity&quot;,3],[&quot;host&quot;],[&quot;solving&quot;],[&quot;priority&quot;,1]]">
+		<div class="subtitle">
+			<div class="icons">
+				<div class="icon menu-icon" context-right="cell-menu-arrow"><img src="{{config 'source'}}images/down.png" /></div>
+			</div>
+			<div class="infos"></div>
+			<div class="search"><input type="text" placeholder="{{trans 'search'}}" /></div>
+		</div>
+		<div class="frame frame-first" context-right="cell-menu-users-row">
+			<table col-storage="users" context-columns>
+				<thead>
+					<tr>
+						<th col-name="id">{{trans 'cell-users.columns.id'}}</th>
+						<th col-name="user">{{trans 'cell-users.columns.user'}}</th>
+						<th col-name="jobs">{{trans 'cell-users.columns.jobs'}}</th>
+						<th col-name="register">{{trans 'cell-users.columns.register'}}</th>
+						<th col-name="activity">{{trans 'cell-users.columns.activity'}}</th>
+						<th col-name="host">{{trans 'cell-users.columns.host'}}</th>
+						<th col-name="solving">{{trans 'cell-users.columns.solving'}}</th>
+						<th col-name="priority">{{trans 'cell-users.columns.priority'}}</th>
+						<th col-name="details">{{trans 'cell-users.columns.details'}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr row-template>
+						<td class="col-id"></td>
+						<td class="col-user"></td>
+						<td class="col-jobs"></td>
+						<td class="col-register"></td>
+						<td class="col-activity"></td>
+						<td class="col-host"></td>
+						<td class="col-solving"></td>
+						<td class="col-priority"></td>
+						<td class="col-details"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="frame frame-lateral"></div>
+	</div>
+</div>
+
+<div handlebars="cell-menu-users-row">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-menu-users-row-other">
+{{> menu-each-parent this}}
+</div>
+
+<div handlebars="cell-logs">
+	<div class="win" cell-type="logs" cell-title="{{trans 'cell-logs.cell-name'}}">
+		<div class="subtitle">
+			<div class="icons">
+				<div class="icon menu-icon" context-right="cell-menu-arrow"><img src="{{config 'source'}}images/down.png" /></div>
+				<div class="icon menu-icon clean" title="{{trans 'cell-logs.clean'}}"><img src="{{config 'source'}}images/trash.png" /></div>
+			</div>
+			<div class="infos"></div>
+			<div class="search"><input type="text" placeholder="{{trans 'search'}}" /></div>
+		</div>
+		<div class="frame frame-first frame-tabs">
+			<ul>
+				<li tab-target="log" class="active">{{trans 'cell-logs.tabs.log'}}</li>
+				<li tab-target="netlog">{{trans 'cell-logs.tabs.netlog'}}</li>
+			</ul>
+			<div tab-id="log" class="active">
+				<table class="original-tr" node-head="log" col-storage="log" context-columns>
+					<thead>
+						<tr>
+							<th col-name="id">{{trans 'cell-logs.columns.id'}}</th>
+							<th col-name="cycle">{{trans 'cell-logs.columns.cycle'}}</th>
+							<th col-name="count">{{trans 'cell-logs.columns.count'}}</th>
+							<th col-name="register">{{trans 'cell-logs.columns.register'}}</th>
+							<th col-name="activity">{{trans 'cell-logs.columns.activity'}}</th>
+							<th col-name="msg">{{trans 'cell-logs.columns.msg'}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr row-template>
+							<td class="col-id"></td>
+							<td class="col-cycle"></td>
+							<td class="col-count"></td>
+							<td class="col-register"></td>
+							<td class="col-activity"></td>
+							<td class="col-msg"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div tab-id="netlog">
+				<table class="original-tr" node-head="netlog" col-storage="netlog" context-columns>
+					<thead>
+						<tr>
+							<th col-name="id">{{trans 'cell-logs.columns.id'}}</th>
+							<th col-name="cycle">{{trans 'cell-logs.columns.cycle'}}</th>
+							<th col-name="count">{{trans 'cell-logs.columns.count'}}</th>
+							<th col-name="register">{{trans 'cell-logs.columns.register'}}</th>
+							<th col-name="activity">{{trans 'cell-logs.columns.activity'}}</th>
+							<th col-name="msg">{{trans 'cell-logs.columns.msg'}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr row-template>
+							<td class="col-id"></td>
+							<td class="col-cycle"></td>
+							<td class="col-count"></td>
+							<td class="col-register"></td>
+							<td class="col-activity"></td>
+							<td class="col-msg"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="frame frame-lateral"></div>
+	</div>
+</div>
+
+<div handlebars="statusbar">
+	<div class="status"></div>
+	<div class="infos">
+		<div class="panels"><div class="vsep"></div> Panels Locked</div>
+		<div class="user">
+			<div class="vsep"></div>
+			<span class="type">
+				<span class="na">User:</span>
+				<span class="padawan">Padawan User:</span>
+				<span class="jedi">Jedi User:</span>
+				<span class="sith">Sith User:</span>
+			</span>
+			<span class="name">N/A</span>
+		</div>
+		<div class="update">
+			<div class="vsep"></div>
+			Last Update: <span class="time">...</span>
+		</div>
+	</div>
+</div>
+
+<div handlebars="partial-menu-each-parent">
+{{tag 'ul' (merge this.attrs (concat '{"name":"' (slice (split (or this.name '') '.') -1) '"}')) this.class}}
+	{{> menu-each this}}
+{{tag '/ul'}}
+</div>
+
+<div handlebars="partial-menu-each">
+{{#each (or (and (eq (type children) 'string') (config children)) children)}}
+	{{#if (eq this 'separator')}}
+		<li class="separator"><div></div></li>
+	{{else}}
+		{{set 'li-class' (concat '{"class":"' (or (or this.class ../this.children-class) '') '"}') 'json'}}
+		{{tag 'li' (merge this.attrs (concat '{"name":"' (slice (split (or this.name '') '.') -1) '"}')) (get 'li-class')}}
+			<div class="icon{{#if (or this.icon-class ../this.children-icon-class)}} {{or this.icon-class ../this.children-icon-class}}{{/if}}">
+				{{set 'icon-prefix' (or (and (or this.prefix ../this.children-prefix) (concat (or this.prefix ../this.children-prefix) '/')) '')}}
+				{{set 'icon-file' (or (or this.icon @key) 'void')}}
+				{{set 'icon-src' (concat '{"src":"' (config 'source') 'images/' (get 'icon-prefix') (get 'icon-file') '.png"}') 'json'}}
+				{{tag 'img' (get 'icon-src')}}
+			</div>
+			{{#if (eq (type this) 'string')}}{{trans this}}{{else}}{{trans this.name}}{{/if}}
+			{{#if this.shortcut}}<div class="shortcut">{{this.shortcut}}</div>{{/if}}
+			{{#if this.children}}
+			<ul>
+				{{> menu-each this}}
+			</ul>
+			{{/if}}
+		{{tag '/li'}}
+	{{/if}}
+{{/each}}
+</div>

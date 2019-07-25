@@ -1,0 +1,75 @@
+// main: ../main.scss
+
+#statusbar {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	padding: 0px 6px;
+	height: 21px;
+	font-size: 12px;
+	line-height: 21px;
+	z-index: 2;
+
+	* { display: inline-block; }
+	.sep { height: 80%; }
+
+	& > .infos {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		right: 6px;
+		height: 100%;
+		text-align: right;
+
+		& > * {
+			position: relative;
+			margin: 0px;
+			padding: 0px 2px;
+			height: 18px;
+			line-height: 21px;
+
+			& > .vsep {
+				position: absolute;
+				top: 2px;
+				left: -6px;
+				height: calc( 100% - ( 2 * 2px ) );
+			}
+		}
+		& > .panels {
+			display: none;
+			color: #000;
+			background-color: rgb( 37, 200, 25 );
+			.locked & { display: inline-block; }
+		}
+		& > .user {
+			.type > *:not(.na) { display: none; }
+
+			&.padawan {
+				color: #000;
+				background-color: rgb( 46, 204, 113 );
+				.type > .na { display: none; }
+				.type > .padawan { display: inline-block; }
+			}
+			&.jedi {
+				color: #000;
+				background-color: rgb( 140, 205, 255 );
+				.type > .na { display: none; }
+				.type > .jedi { display: inline-block; }
+			}
+			&.sith {
+				color: #000;
+				background-color: rgb( 243, 156, 18 );
+				.type > .na { display: none; }
+				.type > .sith { display: inline-block; }
+			}
+		}
+		& > *:not(.vsep) {
+			margin: 2px 3px 0px;
+			line-height: 18px;
+		}
+		& > .vsep {
+				vertical-align: -5px;
+		}
+	}
+}

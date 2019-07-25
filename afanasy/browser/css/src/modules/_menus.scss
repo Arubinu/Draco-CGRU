@@ -1,0 +1,329 @@
+// main: ../main.scss
+
+$menu-color: rgb( 255, 255, 255 );
+$menu-color-hover: rgb( 37, 200, 25 );
+$menu-color-active: rgb( 0, 0, 0 );
+$menu-color-hover-active: $menu-color-active;
+$menu-icon: saturate( 0% ) brightness( 100 );
+$menu-icon-hover: initial;
+$menu-icon-active: saturate( 0% ) brightness( 0 );
+$menu-icon-hover-active: $menu-icon-active;
+
+$menu-bgcolor: rgb( 64, 64, 64 );
+$menu-bgcolor-hover: $menu-bgcolor;
+$menu-bgcolor-active: rgb( 37, 200, 25 );
+$menu-bgcolor-hover-active: $menu-bgcolor-active;
+$menu-bgicon: $menu-bgcolor;
+$menu-bgicon-hover: $menu-bgcolor-active;
+$menu-bgicon-active: $menu-bgicon-hover;
+$menu-bgicon-hover-active: $menu-bgicon;
+
+$menu-subcolor: rgb( 255, 255, 255 );
+$menu-subcolor-hover: rgb( 0, 0, 0 );
+$menu-subcolor-active: $menu-subcolor;
+$menu-subcolor-hover-active: $menu-subcolor-hover;
+$menu-subicon: saturate( 0% ) brightness( 100 );
+$menu-subicon-hover: saturate( 0% ) brightness( 0 );
+$menu-subicon-active: $menu-subicon-hover;
+$menu-subicon-hover-active: $menu-subicon;
+
+$menu-subbgcolor: rgb( 64, 64, 64 );
+$menu-subbgcolor-hover: rgb( 37, 200, 25 );
+$menu-subbgcolor-active: $menu-subbgcolor;
+$menu-subbgcolor-hover-active: $menu-subbgcolor-hover;
+$menu-subbgicon: $menu-bgicon;
+$menu-subbgicon-hover: $menu-bgicon-hover;
+$menu-subbgicon-active: $menu-subbgicon-hover;
+$menu-subbgicon-hover-active: $menu-subbgicon;
+
+%menu-special {
+	overflow: visible;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	font-size: 12px;
+	list-style-type: none;
+}
+%menu-base {
+	color: $menu-color;
+
+	li.disabled {
+		color: rgb( 140, 140, 140 );
+		text-shadow: 1px 1px 1px rgb( 40, 40, 40 );
+		cursor: default !important;
+
+		& > img,
+		& > .rarrow,
+		& > .icon:not(.icon-color) > img {
+			filter: saturate( 0% ) brightness( 1 );
+		}
+	}
+
+	& > ul,
+	& > li > ul {
+		@extend %menu-special;
+
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0px;
+		width: auto;
+		min-width: 300px;
+		background-color: $menu-bgcolor;
+		box-shadow: 0px 0px 5px 2px rgba( 0, 0, 0, .15 );
+		z-index: 10000;
+	}
+
+	& > ul li,
+	& > li > ul li {
+		position: relative;
+		padding: 3px 6px !important;
+		width: auto;
+		height: 26px;
+		min-width: 100%;
+		line-height: 22px;
+		white-space: nowrap;
+		cursor: pointer;
+	}
+
+	& > ul li:not(.infos):not(.separator),
+	& > li > ul li:not(.infos):not(.separator) {
+		margin-right: 42px;
+	}
+
+	& > ul li > ul,
+	& > li > ul li > ul {
+		display: none;
+	}
+
+	& > ul li:not(.disabled):hover > ul,
+	& > li > ul li:not(.disabled):hover > ul {
+		display: initial !important;
+		position: absolute;
+		top: 0px;
+		left: 100%;
+	}
+
+	& > ul li > .icon,
+	& > li > ul li > .icon {
+		display: inline-block;
+		position: relative;
+		margin: initial !important;
+		margin-right: 4px !important;
+		padding: 1px;
+		width: 16px;
+		height: 16px;
+		max-width: initial !important;
+		max-height: initial !important;
+		min-width: initial !important;
+		min-height: initial !important;
+		border: initial !important;
+		border-radius: 2px;
+		box-shadow: initial !important;
+		vertical-align: -3px;
+		cursor: pointer;
+	}
+
+	& > ul li > .shortcut,
+	& > li > ul li > .shortcut {
+		float: right;
+		margin-right: 5px;
+		color: inherit;
+		background-color: inherit;
+	}
+
+	& > ul li.separator,
+	& > li > ul li.separator {
+		display: initial !important;
+		padding: 0px !important;
+	}
+	& > ul li.separator > div,
+	& > li > ul li.separator > div {
+		margin: auto;
+		width: calc( 100% - 6px );
+	}
+
+	&,
+	& > li {
+		color: $menu-color;
+	}
+
+	& > ul,
+	& > ul > li,
+	& > li > ul ,
+	& > li > ul li {
+		color: $menu-subcolor;
+	}
+
+	& > img,
+	& > li > img {
+		filter: $menu-icon;
+	}
+
+	& > ul li > .icon > img,
+	& > li > ul li > .icon > img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: initial !important;
+		width: 14px;
+		height: 14px;
+		max-width: initial !important;
+		max-height: initial !important;
+		min-width: initial !important;
+		min-height: initial !important;
+		cursor: inherit;
+
+		transform: translate( -50%, -50% );
+	}
+
+	& > ul li > .rarrow,
+	& > li > ul li > .rarrow,
+	& > ul li > .icon:not(.icon-color) > img,
+	& > li > ul li > .icon:not(.icon-color) > img {
+		filter: $menu-subicon;
+	}
+
+	/* Hover */
+	&:not(ul):not(.infos):not(.separator):not(.disabled):hover,
+	& > li:not(.infos):not(.separator):not(.disabled):hover {
+		color: $menu-color-hover;
+//		background-color: $menu-bgcolor-hover;
+	}
+
+	& > ul li:not(.infos):not(.separator):not(.disabled):hover,
+	& > li > ul li:not(.infos):not(.separator):not(.disabled):hover {
+		color: $menu-subcolor-hover;
+		background-color: $menu-subbgcolor-hover;
+	}
+
+	&:not(.infos):not(.separator):not(.disabled):hover > img,
+	& > li:not(.infos):not(.separator):not(.disabled):hover > img {
+		filter: $menu-icon-hover;
+	}
+
+	& > ul li:not(.infos):not(.separator):not(.disabled):hover > .icon,
+	& > li > ul li:not(.infos):not(.separator):not(.disabled):hover > .icon {
+		color: $menu-subcolor-hover;
+		background-color: $menu-subbgicon-hover;
+	}
+
+	& > ul li:not(.disabled):hover > .rarrow,
+	& > li > ul li:not(.disabled):hover > .rarrow,
+	& > ul li:not(.infos):not(.separator):not(.disabled):hover > .icon:not(.icon-color) > img,
+	& > li > ul li:not(.infos):not(.separator):not(.disabled):hover > .icon:not(.icon-color) > img {
+		filter: $menu-subicon-hover;
+	}
+
+	/* Active */
+	&:not(ul).active:not(.infos):not(.separator),
+	& > li.active:not(.infos):not(.separator) {
+		color: $menu-color-active;
+		background-color: $menu-bgcolor-active;
+	}
+
+	& > ul > li.active:not(.infos):not(.separator),
+	& > li > ul > li.active:not(.infos):not(.separator) {
+		color: $menu-subcolor-active;
+		background-color: $menu-subbgcolor-active;
+	}
+
+	&:not(ul).active:not(.infos):not(.separator) > img,
+	& > li.active:not(.infos):not(.separator) > img {
+		filter: $menu-icon-active;
+	}
+
+	& > ul li.active:not(.infos):not(.separator) > .icon,
+	& > li > ul li.active:not(.infos):not(.separator) > .icon {
+		color: $menu-subcolor-active;
+		background-color: $menu-subbgicon-active;
+		box-shadow: 0px 0px 1px 1px $menu-subbgicon-active;
+	}
+
+	& > ul li.active > .rarrow,
+	& > li > ul li.active > .rarrow,
+	& > ul li.active:not(.infos):not(.separator) > .icon:not(.icon-color) > img,
+	& > li > ul li.active:not(.infos):not(.separator) > .icon:not(.icon-color) > img {
+		filter: $menu-subicon-active;
+	}
+
+	/* Hover & Active */
+	&:not(ul).active:not(.infos):not(.separator):not(.disabled):hover,
+	& > li.active:not(.infos):not(.separator):not(.disabled):hover {
+		color: $menu-color-hover-active;
+		background-color: $menu-bgcolor-hover-active;
+	}
+
+	& > ul.active:not(.infos):not(.separator):not(.disabled):hover,
+	& > ul > li.active:not(.infos):not(.separator):not(.disabled):hover,
+	& > li > ul .active:not(.infos):not(.separator):not(.disabled):hover,
+	& > li > ul > li.active:not(.infos):not(.separator):not(.disabled):hover {
+		color: $menu-subcolor-hover-active;
+		background-color: $menu-subbgcolor-hover-active;
+	}
+
+	&:not(ul).active:not(.infos):not(.separator):not(.disabled):hover > img,
+	& > li.active:not(.infos):not(.separator):not(.disabled):hover > img {
+		filter: $menu-icon-hover-active;
+	}
+
+	& > ul li.active:not(.infos):not(.separator):not(.disabled):hover > .icon,
+	& > li > ul li.active:not(.infos):not(.separator):not(.disabled):hover > .icon {
+		color: $menu-subcolor-hover-active;
+		background-color: $menu-subbgicon-hover-active;
+		box-shadow: 0px 0px 1px 1px $menu-subbgicon-hover-active;
+	}
+
+	& > ul li.active:not(.infos):not(.separator):not(.disabled):hover > .icon:not(.icon-color) > img,
+	& > li > ul li.active:not(.infos):not(.separator):not(.disabled):hover > .icon:not(.icon-color) > img {
+		filter: $menu-subicon-hover-active;
+	}
+}
+
+.menu-icon,
+.menu, .menu ul > li,
+body > .context-right,
+body > .context-columns {
+	@extend %menu-base;
+	& > ul li:not(.infos):not(.separator):not(.disabled):hover,
+	& > li > ul li:not(.infos):not(.separator):not(.disabled):hover {
+		color: $menu-subcolor-hover !important;
+		background-color: $menu-subbgcolor-hover !important;
+	}
+}
+
+.rarrow {
+	position: absolute;
+	right: 3px;
+	width: 20px;
+	height: 20px;
+	background: url( '../images/rarrow.png' ) no-repeat;
+	background-position: center center;
+	background-size: 10px 10px;
+	filter: $menu-subicon;
+}
+
+body > .context-right,
+body > .context-columns {
+	overflow-y: auto;
+	z-index: 10000;
+	box-shadow: 0px 0px 5px 2px rgba( 0, 0, 0, .15 );
+
+	& > ul {
+		display: block !important;
+		position: relative !important;
+		top: initial !important;
+		left: initial !important;
+		min-width: initial;
+		box-shadow: initial !important;
+	}
+}
+
+body > .context-right {
+	overflow: visible;
+	position: absolute;
+}
+
+body > .context-columns {
+	position: fixed;
+}

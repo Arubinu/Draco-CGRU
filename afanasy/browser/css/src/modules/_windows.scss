@@ -1,0 +1,509 @@
+// main: ../main.scss
+
+$status: (
+	'default': #eee,
+	'DON': rgb( 140, 205, 255 ),
+	'ERR': rgb( 231, 76, 60 ),
+	'PAU': rgb( 158, 158, 158 ),
+	'PPA': rgb( 39, 174, 96 ),
+	'RUN': rgb( 39, 174, 96 ),
+	'ONL': rgb( 140, 205, 255 ),
+	'OFF': rgb( 158, 158, 158 )
+);
+
+.win {
+	overflow: hidden;
+	position: relative;
+	margin: 0px 2px 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: calc( 100% - ( 2 * 2px ) );
+	height: calc( 100% - ( 22px + 2px ) - 2px );
+	background-color: inherit;
+	z-index: 2;
+
+	body.loading & { display: none; }
+	.search-hide, .filter-hide { display: none; }
+
+	&[cell-type=filters] {
+		[row-template],
+		[params-template]:not([name]),
+		[values-template]:not([name]) {
+			display: none;
+		}
+
+		[name=filter-remove] { cursor: pointer; }
+		[name=filter-add] {
+			float: right;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+
+		table {
+			margin: 5px;
+			width: calc( 100% - ( 2 * 5px ) );
+			text-align: left;
+
+			td { text-align: center; }
+		}
+
+		.filter-table {
+			overflow: auto;
+			margin: 10px;
+			width: calc( 100% - ( 2 * 10px ) );
+			height: 130px;
+			border: 1px solid rgba( 255, 255, 255, .15 );
+		}
+	}
+
+	&.decal {
+		height: calc( 100% - ( 22px + 2px ) - 2px - ( 24px + 1px ) );
+	}
+	& > .text {
+		overflow-y: auto;
+		padding: 0px 12px;
+		height: 100%;
+		font-size: 12px;
+	}
+	& > .input,
+	& > .frame .input {
+		@extend %input-class;
+		text-align: center;
+		border: none;
+	}
+	& > .error {
+		&.hide { display: none; }
+		&.notice { background-color: rgb( 52, 152, 219 ) }
+
+		margin: 5px 0px -1px;
+		line-height: 25px;
+		text-align: center;
+		background-color: rgb( 192, 57, 43 );
+	}
+
+	.frame {
+		overflow: auto;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		width: 100%;
+		background-color: rgb( 38, 38, 38 );
+		border: 1px solid rgb( 38, 38, 38 );
+		border-radius: 3px;
+
+		&.frame-tabs {
+			overflow: hidden;
+			background-color: #404040;
+			border: none;
+
+			* { background-color: transparent; }
+
+			& > ul {
+				margin: 0px;
+				padding: 0px;
+				font-size: 0;
+				list-style-type: none;
+
+				& > li {
+					display: inline-block;
+					margin: 0px;
+					padding: 0px 5px;
+					font-size: 14px;
+					background-color: #262626;
+					border: 1px solid #555;
+					border-bottom: none;
+					border-radius: 2px;
+					border-bottom-left-radius: 0px;
+					border-bottom-right-radius: 0px;
+					cursor: pointer;
+
+					&:not(.active) { background-color: #333; }
+				}
+			}
+
+			& > div[tab-id] {
+				@extend %input-class;
+				overflow: auto;
+				height: calc( 100% - 20px );
+				font-size: 12px;
+				text-align: left;
+				background-color: #262626;
+				border: 1px solid #555;
+
+				&:not(.active) { display: none; }
+				&.pre { white-space: pre; }
+				&.inside { padding: 5px 10px; }
+
+				input,
+				.isinput,
+				textarea,
+				.istextarea {
+					background-color: rgba( 255, 255, 255, 0.15 );
+					white-space: pre;
+				}
+				input,
+				.isinput {
+					margin-left: 8px;
+					height: 20px;
+				}
+				textarea,
+				.istextarea {
+					width: calc( 100% - 2px ) !important;
+					resize: none;
+				}
+
+				.flex {
+					display: flex;
+					& > * { flex: 1; }
+					& > .flex:not(:first-child) { margin-left: 8px; }
+				}
+
+				&[tab-id="exec"] > div {
+					line-height: 25px;
+				}
+			}
+		}
+
+		& > table,
+		&.frame-tabs > [tab-id] > table {
+			min-width: 100%;
+			table-layout: fixed;
+			border-spacing: unset;
+
+			&.original-tr tr:not(.hide) {
+				background-color: #000;
+				&.tr-odd { background-color: #000 !important; }
+				&:nth-child(even), &.tr-even { background-color: rgb( 32, 32, 32 ); }
+			}
+
+			tr {
+				color: map-get( $status, 'default' );
+				&[row-template] { display: none; }
+
+				th, td {
+					overflow-x: visible;
+					overflow-y: hidden;
+					padding: 0px 4px;
+					height: 18px;
+					font-size: 12px;
+					white-space: nowrap;
+				}
+
+				th {
+					cursor: pointer;
+
+					&[col-sort] {
+						padding-right: 14px;
+						background-image: url( '../images/drop-down-col.png' );
+						background-repeat: no-repeat;
+						background-position: calc( 100% - 2px ) center;
+						background-size: auto calc( 100% - ( 2 * 4px ) );
+
+						&[col-sort=up] { background-image: url( '../images/drop-downu-col.png' ); }
+						&[col-sort=down] { background-image: url( '../images/drop-downd-col.png' ); }
+					}
+				}
+			}
+			img {
+				margin: 0px -4px;
+				max-height: calc( 100% - 1px );
+				vertical-align: middle;
+			}
+			div:not(.progress):not(.table-resize) {
+				position: absolute;
+				top: 0px;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				padding: 0px 4px;
+				font-weight: bold;
+				text-align: center;
+				background-color: initial;
+				z-index: 2;
+			}
+			thead {
+				background-color: rgb( 49, 49, 49 );
+
+				tr {
+					th {
+						position: sticky;
+						top: 0px;
+						background-color: rgb( 64, 64, 64 );
+						border-radius: 2px;
+						box-shadow: 0px 0px 0px 1px inset rgb( 35, 35, 35 );
+						z-index: 3;
+
+						&[col-name="msg"],
+						&[col-name="details"] {
+							text-align: left;
+						}
+					}
+				}
+			}
+			tbody {
+				background-color: #000;
+				background-image: repeating-linear-gradient( rgb( 32, 32, 32 ), rgb( 32, 32, 32 ) 18px, transparent 18px, transparent calc( 18px * 2 ) );
+				//background-image: linear-gradient( rgb( 32, 32, 32 ), rgb( 32, 32, 32 ) 18px, transparent 18px, transparent calc( 18px * 2 ) );
+				//background-repeat: repeat-y;
+
+				tr {
+					td {
+						position: relative;
+						text-align: center;
+						vertical-align: text-top;
+
+						pre {
+							margin: 2px 0px 4px;
+						}
+
+						&.col-id {
+							text-align: right;
+						}
+
+						&.col-icon,
+						&.col-name,
+						&.col-msg,
+						&.col-details {
+							text-align: left;
+						}
+
+						&.col-progress {
+							color: #000;
+							font-size: 11px;
+							line-height: calc( 100% + 6px );
+							text-shadow: initial !important;
+						}
+
+						&.col-icon {
+							overflow: hidden;
+							padding-left: 3px;
+							padding-right: 3px;
+
+							&::before {
+								content: "";
+								padding-right: 10px;
+								color: #fff;
+								font-weight: bold;
+								vertical-align: middle;
+							}
+						}
+					}
+
+					.progress {
+						overflow: hidden;
+						width: calc( 100% - 6px );
+						height: calc( 100% - 6px );
+						min-width: 100px;
+						vertical-align: -2px;
+					}
+
+					&[node-id*=":"] td.col-icon {
+						padding-left: 8px;
+						padding-right: 6px;
+					}
+					&:not([node-id*=":"]) {
+						&:not([node-child]) td.col-icon {
+							padding-left: 0px;
+						}
+						&[node-child] {
+							font-weight: bold;
+
+							&.children-roll td.col-icon::before { content: "v";}
+							td.col-icon {
+								&, * { cursor: pointer; }
+
+								&::before {
+									content: ">";
+									margin-left: 9px;
+								}
+							}
+						}
+					}
+
+					&.selected {
+						//color: #000;
+						text-shadow: 0px 0px 1px #000;
+						td { background-color: rgb( 37, 200, 25 ) !important; }
+					}
+				}
+			}
+		}
+	}
+
+	& > .frame-lateral {
+		display: none;
+		right: initial;
+		width: 40%;
+		border: none;
+
+		& > * {
+			display: none;
+			height: 100%;
+			&.active { display: block; }
+		}
+	}
+	&.show-lateral {
+		& > .frame-lateral { display: block; }
+		& > .frame-first {
+			left: 40%;
+			width: calc( 100% - 40% );
+		}
+	}
+
+	.frame-circ {
+		display: none;
+		padding: 10px;
+		background-color: inherit;
+		border: initial;
+
+		& > div {
+			overflow: hidden;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background: #2e303c;
+			background: linear-gradient( to bottom, #2e303c 0%, #131218 100% );
+			border: 1px solid rgb( 38, 38, 38 );
+			border-radius: 6px;
+
+			.pie {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 100px;
+				height: 100px;
+				transform: translate( -50%, -50% );
+			}
+		}
+	}
+}
+
+@mixin colors-node-status( $type ) {
+	$color: map-get( $status, $type );
+	[node-status=#{$type}] {
+		color: $color !important;
+		.legend & > div:first-child { background-color: $color; }
+		//&.selected { text-shadow: 0px 0px 1px #000; }
+	}
+}
+
+@include colors-node-status( 'DON' );
+@include colors-node-status( 'ERR' );
+@include colors-node-status( 'PAU' );
+@include colors-node-status( 'PPA' );
+@include colors-node-status( 'RUN' );
+@include colors-node-status( 'ONL' );
+@include colors-node-status( 'OFF' );
+
+.legend {
+	overflow-y: auto;
+	position: absolute;
+	left: 100%;
+	width: 200px;
+	height: 100%;
+	background: initial;
+
+	[node-status] {
+		color: #eee !important;
+		background: initial !important;
+
+		& > div:first-child {
+			display: inline-block;
+			margin-right: 5px;
+			width: 12px;
+			height: 12px;
+			border: 2px solid #eee;
+			border-radius: 2px;
+			vertical-align: -1px;
+		}
+	}
+}
+.pie-container {
+	position: relative;
+	float: left;
+	width: calc( 100% - 200px );
+	height: 100%;
+	min-width: 120px;
+	background: initial;
+}
+
+.pie {
+	/* Basic layout */
+	display: inline-block;
+	width: 3.75em;
+	height: 3.75em;
+	border-radius: 50%;
+
+	/* A little styling */
+	border: .15em solid #fff;
+	box-shadow: 0 .075em .2em .05em rgba( 0, 0, 0, .25 );
+
+	/* fixes a minor clipping issue in Chrome */
+	background-origin: border-box;
+	background-image: conic-gradient(
+		map-get( $status, 'DON' ) calc( var( --segment1, 0 ) * 3.6deg ),
+		map-get( $status, 'ERR' ) calc( var( --segment1, 0 ) * 3.6deg ),
+		map-get( $status, 'ERR' ) calc( var( --segment2, 0 ) * 3.6deg ),
+		map-get( $status, 'PAU' ) calc( var( --segment2, 0 ) * 3.6deg ),
+		map-get( $status, 'PAU' ) calc( var( --segment3, 0 ) * 3.6deg ),
+		map-get( $status, 'default' ) calc( var( --segment3, 0 ) * 3.6deg ),
+		map-get( $status, 'default' ) calc( var( --segment4, 100 ) * 3.6deg ),
+		map-get( $status, 'PPA' ) calc( var( --segment4, 100 ) * 3.6deg ),
+		map-get( $status, 'PPA' ) calc( var( --segment5, 0 ) * 3.6deg ),
+	);
+
+	transition: background .1s ease-out;
+
+	[cell-type=renders] & {
+		background-image: conic-gradient(
+			map-get( $status, 'ONL' ) calc( var( --segment1, 0 ) * 3.6deg ),
+			map-get( $status, 'RUN' ) calc( var( --segment1, 0 ) * 3.6deg ),
+			map-get( $status, 'RUN' ) calc( var( --segment2, 0 ) * 3.6deg ),
+			map-get( $status, 'OFF' ) calc( var( --segment2, 0 ) * 3.6deg ),
+			map-get( $status, 'OFF' ) calc( var( --segment3, 0 ) * 3.6deg ),
+			map-get( $status, 'default' ) calc( var( --segment3, 0 ) * 3.6deg ),
+			map-get( $status, 'default' ) calc( var( --segment4, 100 ) * 3.6deg ),
+		);
+	}
+
+	[cell-type=tasks] & {
+		background-image: conic-gradient(
+			map-get( $status, 'DON' ) calc( var( --segment1, 0 ) * 3.6deg ),
+			map-get( $status, 'RUN' ) calc( var( --segment1, 0 ) * 3.6deg ),
+			map-get( $status, 'RUN' ) calc( var( --segment2, 0 ) * 3.6deg ),
+			map-get( $status, 'ERR' ) calc( var( --segment2, 0 ) * 3.6deg ),
+			map-get( $status, 'ERR' ) calc( var( --segment3, 0 ) * 3.6deg ),
+			map-get( $status, 'default' ) calc( var( --segment3, 0 ) * 3.6deg ),
+			map-get( $status, 'default' ) calc( var( --segment4, 100 ) * 3.6deg ),
+		);
+	}
+}
+
+.progress {
+	/* Basic layout */
+	display: inline-block;
+	width: 200px;
+	height: 20px;
+
+	/* A little styling */
+	border-radius: 2px;
+	box-shadow: 0px 0px 1px 1px rgba( 255, 255, 255, .6 );
+
+	/* fixes a minor clipping issue in Chrome */
+	background-origin: border-box;
+	background-image: linear-gradient( to right,
+		map-get( $status, 'DON' ) calc( var( --segment1, 0 ) * 1% ),
+		map-get( $status, 'ERR' ) calc( var( --segment1, 0 ) * 1% ),
+		map-get( $status, 'ERR' ) calc( var( --segment2, 0 ) * 1% ),
+		map-get( $status, 'PAU' ) calc( var( --segment2, 0 ) * 1% ),
+		map-get( $status, 'PAU' ) calc( var( --segment3, 0 ) * 1% ),
+		map-get( $status, 'default' ) calc( var( --segment3, 0 ) * 1% ),
+		map-get( $status, 'default' ) calc( var( --segment4, 100 ) * 1% ),
+		map-get( $status, 'PPA' ) calc( var( --segment4, 100 ) * 1% ),
+		map-get( $status, 'PPA' ) calc( var( --segment5, 0 ) * 1% ),
+	);
+
+	transition: background .1s ease-out;
+}

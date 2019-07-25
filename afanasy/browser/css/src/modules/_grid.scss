@@ -1,0 +1,273 @@
+// main: ../main.scss
+
+#grid {
+	display: grid;
+	background-color: #404040;
+
+	& > .cell {
+		z-index: 3;
+
+		& > .resize {
+			display: none;
+			bottom: 0px;
+			right: 0px;
+			z-index: 2;
+		}
+	}
+
+	& > .empty-cell {
+		position: relative;
+		z-index: 2;
+
+		&.active { background-color: rgba( 200, 50, 50, .2 ); }
+
+		& > .rule {
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			border: 1px solid #000;
+			border-radius: 2px;
+
+			&[grid-type=column] {
+				top: -13px;
+				right: -6px;
+				height: 10px;
+				border-top: initial;
+				border-bottom: initial;
+				cursor: col-resize;
+			}
+			&[grid-type=row] {
+				bottom: -6px;
+				left: -13px;
+				width: 10px;
+				border-left: initial;
+				border-right: initial;
+				cursor: row-resize;
+			}
+		}
+	}
+}
+
+.cell {
+	position: relative;
+
+	.empty, & > .resize, & > .buttons { display: none; }
+
+	.icon {
+		position: relative;
+		display: inline-block;
+		margin: 2px 1.5px 0px 1.5px;
+		padding: 1px;
+		width: 18px;
+		height: 18px;
+		background-color: initial;
+		border: 1px solid rgb( 37, 37, 37 );
+		border-radius: 3px;
+		box-shadow: 1px 1px 15px inset rgba( 255, 255, 255, .15 );
+		cursor: pointer;
+
+		& > img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			max-width: 12px;
+			max-height: 12px;
+			transform: translate( -50%, -50% );
+			cursor: inherit;
+		}
+	}
+
+	& > .title {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		right: 2px;
+		height: 22px;
+		font-size: 12px;
+		text-align: center;
+		line-height: 22px;
+		background-color: rgb( 54, 54, 54 );
+		cursor: pointer;
+		z-index: 10;
+
+		& > *:not(.icon) { cursor: pointer; }
+		.icon { float: right; }
+		.refresh {
+			position: absolute;
+			top: 6px;
+			left: 6px;
+			width: 10px;
+			height: 10px;
+			background-color: rgba( 255, 255, 255, .2 );
+			border-radius: 100%;
+			box-shadow: 0px 0px 1px 1px rgba( 255, 255, 255, .6 );
+			opacity: 0;
+			transition: opacity .1s ease-in-out;
+		}
+	}
+	&.active > .title { background-color: rgb( 45, 45, 45 ); }
+
+	& > .subtitle {
+		overflow: hidden;
+		margin-top: calc( 24px + 1px );
+		width: calc( 100% - 2px );
+		max-height: 24px;
+		vertical-align: 1px;
+
+		.icons,
+		.infos,
+		.rinfos {
+			@extend %input-class;
+
+			float: left;
+			height: 24px;
+			font-size: 12px;
+			line-height: 24px;
+
+			select,
+			.isselect {
+				padding: 4px 7px !important;
+				height: calc( 13px + ( 2 * 4px ) );
+			}
+		}
+		.icon { margin-right: -2px; }
+		.infos { margin-left: 5px; }
+		.rinfos { margin-right: 5px; }
+
+		.rinfos,
+		.search {
+			float: right;
+			margin-top: 1px;
+			width: 200px;
+			max-width: 50%;
+			text-align: right;
+			cursor: initial;
+		}
+		.rinfos > input,
+		.search > input {
+			padding: 2px 4px;
+			width: 100%;
+			font-size: 12px;
+			color: #fff;
+			background-color: #000;
+			border: 1px solid rgb( 38, 38, 38 );
+			border-radius: 3px;
+			cursor: inherit;
+		}
+	}
+
+	& > .resize {
+		display: initial;
+		position: absolute;
+		bottom: -36px;
+		right: 0px;
+		width: 12px;
+		height: 12px;
+		border-top-left-radius: 100%;
+		background: linear-gradient( 135deg, rgba( 255, 255, 255, .3 ) 0%,rgba( 255, 255, 255, .3 ) 9%,rgba( 255, 255, 255, 0 ) 10%,rgba( 255, 255, 255, 0 ) 19%,rgba( 255, 255, 255, .3 ) 20%,rgba( 255, 255, 255, .3 ) 29%,rgba( 255, 255, 255, 0 ) 30%,rgba( 255, 255, 255, 0 ) 39%,rgba( 255, 255, 255, .3 ) 40%,rgba( 255, 255, 255, .3 ) 49%,rgba( 255, 255, 255, 0 ) 50%,rgba( 255, 255, 255, 0 ) 59%,rgba( 255, 255, 255, .3 ) 60%,rgba( 255, 255, 255, .3 ) 69%,rgba( 255, 255, 255, 0 ) 70%,rgba( 255, 255, 255, 0 ) 79%,rgba( 255, 255, 255, .3 ) 80%,rgba( 255, 255, 255, .3 ) 89%,rgba( 255, 255, 255, 0 ) 90%,rgba( 255, 255, 255, 0 ) 100% );
+		cursor: nwse-resize;
+		z-index: 3;
+	}
+
+	.empty {
+		position: absolute;
+		top: 2px;
+		bottom: 2px;
+		left: 2px;
+		right: 2px;
+		z-index: 1;
+
+		& > div {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			text-align: center;
+			transform: translate( -50%, -50% );
+			transition: all .2s linear;
+			cursor: pointer;
+
+			&:hover { text-shadow: 0px 0px 5px #000, 0px 0px 5px #000; }
+		}
+	}
+}
+
+body > .cell {
+	position: fixed;
+	top: 40px;
+	left: 20px;
+	width: initial;
+	height: initial;
+	min-width: 400px;
+	min-height: 100px;
+	border-radius: 3px;
+	box-shadow: 0px 0px 5px 2px rgba( 0, 0, 0, .2 );
+	z-index: 100;
+
+	& > .title, & > .title > *:not(.icon) { cursor: move; }
+
+	& > .buttons {
+		display: initial;
+		position: absolute;
+		bottom: -36px;
+		left: 0px;
+		right: 0px;
+		padding: 5px 10px 8px;
+		text-align: right;
+		background-color: rgb( 64, 64, 64 );
+		box-shadow: 0px 5px 5px 2px rgba( 0, 0, 0, .2 );
+		z-index: 1;
+
+		input[type=button] {
+			padding: 4px 10px;
+			color: #fff;
+			font-weight: bold;
+			border: 1px solid #363636;
+			border-radius: 2px;
+			background-color: #505050;
+			box-shadow: 0px 0px 1px 1px rgba( 0, 0, 0, .1 );
+			cursor: pointer;
+
+			&:hover { color: rgb( 37, 200, 25 ); }
+			&.turquoise { background-color: #16a085; }
+			&.green { background-color: #27ae60; }
+			&.blue { background-color: #2980b9; }
+			&.purple { background-color: #8e44ad; }
+			&.yellow { background-color: #f39c12; }
+			&.orange { background-color: #d35400; }
+			&.red { background-color: #c0392b; }
+			&.gray { background-color: #7f8c8d; }
+
+			&[disabled] {
+				color: #555;
+				cursor: not-allowed;
+/*
+				&.turquoise { background-color: #45736a; }
+				&.green { background-color: #508667; }
+				&.blue { background-color: #54768c; }
+				&.purple { background-color: #845a96; }
+				&.yellow { background-color: #a18963; }
+				&.orange { background-color: #83634e; }
+				&.red { background-color: #935e58; }
+				&.gray { background-color: #878787; }
+*/
+			}
+		}
+	}
+}
+
+body:not(.locked) #grid {
+	top: calc( 64px + 13px );
+	left: 13px;
+	border-radius: 3px;
+
+	& > .cell, & > .empty-cell {
+		border: 1px dashed rgba( 100, 100, 100, 0.6 );
+		border-radius: 3px;
+	}
+}
+
+body > .cell,
+body:not(.locked) #grid > .cell {
+	& > .title { cursor: move; }
+	& > .resize { display: block; }
+}

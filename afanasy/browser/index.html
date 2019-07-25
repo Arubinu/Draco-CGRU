@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Draco CGRU</title>
+
+		<link rel="icon" type="image/png" href="./afanasy/browser/images/logo.png" />
+		<link rel="stylesheet" href="./afanasy/browser/css/main.min.css" />
+
+		<script type="text/javascript" src="../lib/js/md5.js"></script>
+		<script type="text/javascript" src="../lib/js/cgru.js"></script>
+		<script type="text/javascript" src="./afanasy/browser/js/handlebars.js"></script>
+		<script type="text/javascript" src="./afanasy/browser/js/scripts.min.js"></script>
+	</head>
+
+	<body class="loading locked main-toolbar">
+		<div id="toolbar" handlebars="toolbar" handlebars-autoload></div>
+		<div id="loading"><div></div></div>
+		<div id="grid"></div>
+		<div id="statusbar" handlebars="statusbar" handlebars-autoload></div>
+
+		<!-- fix CGRU script error -->
+		<div id="afanasy" style="display: none;"><div id="cgru_parameters"></div></div>
+		<!-- fix CGRU script error -->
+	</body>
+</html>

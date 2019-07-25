@@ -1,0 +1,2000 @@
+{
+	"site-name": "Draco CGRU",
+	"site-version": "1.0",
+	"site-changelog": "nothing yet",
+	"logs_max": 100,
+	"cell_empty": "-",
+	"logos_prefix": "/icons/software/",
+	"logos_default": "./images/void.png",
+	"progressbar": {
+		" ":	0,
+		"D":	"STATE_DONE_MASK",
+		"S":	"STATE_SKIPPED_MASK | STATE_DONE_MASK",
+		"G":	"STATE_DONE_MASK | STATE_WARNING_MASK",
+		"r":	"STATE_READY_MASK",
+		"W":	"STATE_WAITDEP_MASK",
+		"R":	"STATE_RUNNING_MASK",
+		"N":	"STATE_RUNNING_MASK | STATE_WARNING_MASK",
+		"Y":	"STATE_ERROR_READY_MASK | STATE_READY_MASK",
+		"E":	"STATE_ERROR_MASK",
+		"C":	"STATE_WAITRECONNECT_MASK"
+	},
+	"states": {
+		"ONL":	"states.ONL",
+		"RDY":	"states.RDY",
+		"RUN":	"states.RUN",
+		"DON":	"states.DON",
+		"WRN":	"states.WRN",
+		"ERR":	"states.ERR",
+		"SKP":	"states.SKP",
+		"OFF":	"states.OFF",
+		"WDP":	"states.WDP",
+		"WTM":	"states.WTM",
+		"DRT":	"states.DRT",
+		"NbY":	"states.NbY",
+		"NBY":	"states.NBY",
+		"PAU":	"states.PAU",
+		"PER":	"states.PER",
+		"PBR":	"states.PBR",
+		"PSC":	"states.PSC",
+		"WFL":	"states.WFL",
+		"WSL":	"states.WSL",
+		"WWK":	"states.WWK",
+		"PPA":	"states.PPA",
+		"RER":	"states.RER",
+		"WRC":	"states.WRC",
+		"WD":	"states.WD",
+		"WT":	"states.WT"
+	},
+	"confirm": {
+		"launch-cmd": {
+			"title":	"cell-menu-renders-row.launch-cmd",
+			"text":		"enter-command",
+			"button":	"send",
+			"callback":	"launch_cmd",
+			"type":		"lcmd",
+			"input":	{
+				"type":		"string",
+				"elements":	[
+					{
+						"name":			"cmd",
+						"value":		"",
+						"placeholder":	">_"
+					}
+				]
+			}
+		},
+		"launch-cmd-exit": {
+			"title":	"cell-menu-renders-row.launch-cmd-exit",
+			"text":		"enter-command",
+			"button":	"send",
+			"callback":	"launch_cmd",
+			"type":		"lcex",
+			"input":	{
+				"type":		"string",
+				"elements":	[
+					{
+						"name":			"cmd",
+						"value":		"",
+						"placeholder":	">_"
+					}
+				]
+			}
+		},
+		"service-enable": {
+			"title":	"cell-menu-renders-row.service.enable",
+			"text":		"enter-service-name",
+			"button":	"confirm",
+			"callback":	"service",
+			"type":		"enable",
+			"input":	{
+				"type":		"string",
+				"elements":	[
+					{
+						"name":			"name",
+						"value":		"",
+						"placeholder":	""
+					}
+				]
+			}
+		},
+		"custom-data": {
+			"title":	"cell-menu-users-row.custom-data",
+			"text":		"enter-custom-data",
+			"button":	"confirm",
+			"callback":	"custom_data",
+			"input":	{
+				"type":		"string",
+				"elements":	[
+					{
+						"name":			"data",
+						"value":		"",
+						"placeholder":	""
+					}
+				]
+			}
+		},
+		"service-disable": {
+			"title":	"cell-menu-renders-row.service.disable",
+			"text":		"enter-service-name",
+			"button":	"confirm",
+			"callback":	"service",
+			"type":		"disable",
+			"input":	{
+				"type":		"string",
+				"elements":	[
+					{
+						"name":			"name",
+						"value":		"",
+						"placeholder":	""
+					}
+				]
+			}
+		}
+	},
+	"langs": {
+		"default": "en-US",
+		"en-US": {
+			"name": "English",
+			"example": "Example",
+			"filters": "Filters",
+			"graph": "Pie chart",
+			"search": "Search...",
+			"copy-to-clipboard": "Copy To Clipboard",
+			"selected": "Selected",
+			"select-all": "Select All",
+			"properties": "Properties",
+			"tasks_log": "Tasks Log",
+			"full_log": "Full Properties",
+			"enter-command": "Enter command:",
+			"enter-service-name": "Enter service name:",
+			"enter-custom-data": "Enter &quot;custom_data&quot; JSON:",
+			"login-username": "Username",
+			"login-uilevel": "UI Level",
+			"login-hostname": "Hostname",
+			"empty-fields": "Please complete all fields !",
+			"error": "Error",
+			"send": "Send",
+			"confirm": "Confirm",
+			"confirm-all": "Confirm for All",
+			"close": "Close",
+			"states.ONL": "Online",
+			"states.RDY": "Ready",
+			"states.RUN": "Running",
+			"states.DON": "Done",
+			"states.WRN": "Warning",
+			"states.ERR": "Error",
+			"states.SKP": "Skipped",
+			"states.OFF": "Offline",
+			"states.WDP": "WDP",
+			"states.WTM": "WTM",
+			"states.DRT": "Dirty",
+			"states.NbY": "nimby",
+			"states.NBY": "NIMBY",
+			"states.PAU": "Pause",
+			"states.PER": "Parser Error",
+			"states.PBR": "Parser Bad Result",
+			"states.PSC": "PSC",
+			"states.WFL": "WOLFalling",
+			"states.WSL": "WOLSleeping",
+			"states.WWK": "WOLWaking",
+			"states.PPA": "Preview Pending Approval",
+			"states.RER": "Restated Error Ready",
+			"states.WRC": "WRC",
+			"states.WD": "Waiting Dependencies",
+			"states.WT": "Waiting Time",
+			"toolbar.file": "File",
+			"toolbar.file.login-user": "Manage The User",
+			"toolbar.file.app-refresh": "Reload the Application",
+			"toolbar.view": "View",
+			"toolbar.view.new-panel": "New Panel",
+			"toolbar.view.new-panel.jobs": "Jobs",
+			"toolbar.view.new-panel.job-details": "Job Details",
+			"toolbar.view.new-panel.job-dependency-view": "Job Dependency View",
+			"toolbar.view.new-panel.job-reports": "Job Reports",
+			"toolbar.view.new-panel.slaves": "Slaves",
+			"toolbar.view.new-panel.slave-reports": "Slave Reports",
+			"toolbar.view.new-panel.pulses": "Pulses",
+			"toolbar.view.new-panel.balancers": "Balancers",
+			"toolbar.view.new-panel.limits": "Limits",
+			"toolbar.view.new-panel.console": "Console",
+			"toolbar.view.new-panel.remote-commands": "Remote Commands",
+			"toolbar.view.new-panel.background-operations": "Background Operations",
+			"toolbar.view.new-panel.cloud": "Cloud",
+			"toolbar.view.lock-panels": "Lock Pannels",
+			"toolbar.view.unlock-panels": "Unlock Pannels",
+			"toolbar.view.main-toolbar": "Main Toolbar",
+			"toolbar.view.pinned-layouts": "Pinned Layouts",
+			"toolbar.view.open-layout": "Open Layout...",
+			"toolbar.view.save-layout": "Save Layout...",
+			"toolbar.view.save-all-pinned-layouts": "Save All Pinned Layouts...",
+			"toolbar.view.reset-layout": "Reset Layout",
+			"toolbar.scripts": "Scripts",
+			"toolbar.tools": "Tools",
+			"toolbar.tools.super-user-mode": "Super User Mode",
+			"toolbar.tools.view-repository-history": "View Repository History...",
+			"toolbar.tools.view-power-management-history": "View Power Management History...",
+			"toolbar.tools.view-farm-reports": "View Farm Reports...",
+			"toolbar.tools.manage-pools": "Manage Pools...",
+			"toolbar.tools.manage-groups": "Manage Groups...",
+			"toolbar.tools.manage-users": "Manage Users...",
+			"toolbar.tools.manager-user-groups": "Manager User Groups...",
+			"toolbar.tools.configure-repository-options": "Configure Repository Options...",
+			"toolbar.tools.configure-slave-scheduling": "Configure Slave Scheduling...",
+			"toolbar.tools.configure-power-management": "Configure Power Management...",
+			"toolbar.tools.configure-cloud-providers": "Configure Cloud Providers...",
+			"toolbar.tools.configure-plugins": "Configure Plugins...",
+			"toolbar.tools.configure-events": "Configure Events...",
+			"toolbar.tools.configure-script-menus": "Configure Script Menus",
+			"toolbar.tools.perform-pending-job-scan": "Perform Pending Job Scan",
+			"toolbar.tools.perform-house-cleaning": "Perform House Cleaning",
+			"toolbar.tools.perform-repository-repair": "Perform Repository Repair",
+			"toolbar.tools.undelete-jobs": "Undelete Jobs",
+			"toolbar.tools.explore-repository-root": "Explore Repository Root",
+			"toolbar.tools.import-settings": "Import Settings...",
+			"toolbar.tools.download-integrated-submission-scripts": "Download Integrated Submission Scripts...",
+			"toolbar.tools.synchronize-scripts-and-plugin-icons": "Synchronize Scripts and Plugin Icons",
+			"toolbar.tools.local-slave-controls": "Local Slave Controls...",
+			"toolbar.tools.options": "Options...",
+			"toolbar.help": "Help",
+			"toolbar.help.language": "Language",
+			"toolbar.help.about": "About",
+			"cell-container.untitled": "Untitled",
+			"cell-container.empty": "Click here to add an item",
+			"cell-container.lines-title": "CTRL + Click: attach window",
+			"cell-menu-add.jobs": "Jobs",
+			"cell-menu-add.monitors": "Monitors",
+			"cell-menu-add.renders": "Renders",
+			"cell-menu-add.users": "Users",
+			"cell-menu-add.logs": "Logs",
+			"cell-menu-add.job-details": "Job Details",
+			"cell-menu-add.job-dependency-view": "Job Dependency View",
+			"cell-menu-add.job-reports": "Job Reports",
+			"cell-menu-add.slaves": "Slaves",
+			"cell-menu-add.slave-reports": "Slave Reports",
+			"cell-menu-add.pulses": "Pulses",
+			"cell-menu-add.balancers": "Balancers",
+			"cell-menu-add.limits": "Limits",
+			"cell-menu-add.console": "Console",
+			"cell-menu-add.remote-commands": "Remote Commands",
+			"cell-menu-add.background-operations": "Background Operations",
+			"cell-menu-add.cloud": "Cloud",
+			"cell-menu-arrow-other.selected-filter": "Selected Filter...",
+			"cell-menu-arrow-other.selected-filter.no-filter": "No Filter",
+			"cell-menu-arrow-other.edit-filters": "Add/Edit Filters",
+			"cell-menu-arrow-other.clear-filter": "Clear Filter",
+			"cell-menu-arrow-other.clear-search-history": "Clear Search History",
+			"cell-menu-arrow-other.ego-centric-sorting": "Ego-Centric Sorting",
+			"cell-menu-arrow-other.job-batch-grouping": "Job Batch Grouping",
+			"cell-menu-arrow-other.auto-sorting-and-filtering": "Auto-Sorting and Filtering",
+			"cell-menu-arrow-other.human-readable-copying": "Human Readable Copying",
+			"cell-menu-arrow-other.graph-view": "Graph View",
+			"cell-menu-arrow-other.graph-types": "Graph Types",
+			"cell-menu-arrow-other.pinned-list-layouts": "Pinned List Layouts",
+			"cell-menu-arrow-other.pinned-list-layouts.default": "Default",
+			"cell-menu-arrow-other.pinned-list-layouts.pin-current-list-layout": "Pin Current List Layout...",
+			"cell-menu-arrow-other.pinned-list-layouts.reset-current-list-layout": "Reset Current List Layout",
+			"cell-menu-arrow-other.pinned-list-layouts.save-current-list-layout-as-default": "Save Current List Layout As Default",
+			"cell-menu-arrow-other.pinned-list-layouts.reset-default-list-layout": "Reset Default List Layout",
+			"cell-menu-arrow-other.open-list-layout": "Open List Layout...",
+			"cell-menu-arrow-other.save-list-layout": "Save List Layout...",
+			"cell-filters.cell-name": "Edit Filter...",
+			"cell-filters.filters.select": "Filter",
+			"cell-filters.filters.new": "New",
+			"cell-filters.filters.saved": "Saved",
+			"cell-filters.filters.placeholder": "Enter a name for this filter ...",
+			"cell-filters.filters.empty": "Select a filter",
+			"cell-filters.filters.add": "Add Filter",
+			"cell-filters.filters.remove": "-",
+			"cell-filters.params.contains": "Contains",
+			"cell-filters.params.not-contains": "Not Contains",
+			"cell-filters.params.starts-with": "Starts With",
+			"cell-filters.params.ended-by": "Ended By",
+			"cell-filters.params.equals": "Equals",
+			"cell-filters.params.not-equals": "Not Equals",
+			"cell-filters.params.greater-than": "Is Greater Than",
+			"cell-filters.params.less-than": "Is Less Than",
+			"cell-filters.params.before": "Before",
+			"cell-filters.params.after": "After",
+			"cell-filters.values.empty": "Empty",
+			"cell-jobs.cell-name": "Jobs",
+			"cell-jobs.batch": "batch",
+			"cell-jobs.jobs": "jobs",
+			"cell-jobs.columns.name": "Job Name",
+			"cell-jobs.columns.user": "User",
+			"cell-jobs.columns.errors": "Errors",
+			"cell-jobs.columns.progress": "Task Progress",
+			"cell-jobs.columns.status": "Status",
+			"cell-jobs.columns.running": "Running Time",
+			"cell-jobs.columns.render": "Render Timings",
+			"cell-jobs.columns.creation": "Creation Date/Time",
+			"cell-jobs.columns.started": "Started Date/Time",
+			"cell-jobs.columns.done": "Done Date/Time",
+			"cell-jobs.columns.branch": "Branch",
+			"cell-jobs.columns.capacity": "Capacity",
+			"cell-jobs.columns.priority": "Priority",
+			"cell-jobs.columns.details": "Details",
+			"cell-menu-jobs-row.start-job": "Start Job",
+			"cell-menu-jobs-row.pause-job": "Suspend Job",
+			"cell-menu-jobs-row.stop-job": "Stop Job",
+			"cell-menu-jobs-row.restart-jobs": "Restart Job Tasks...",
+			"cell-menu-jobs-row.restart-jobs.restart": "All Tasks",
+			"cell-menu-jobs-row.restart-jobs.restart-pause": "All And Pause",
+			"cell-menu-jobs-row.restart-jobs.restart-errors": "Error Tasks",
+			"cell-menu-jobs-row.restart-jobs.restart-running": "Running Tasks",
+			"cell-menu-jobs-row.restart-jobs.restart-skipped": "Skipped Tasks",
+			"cell-menu-jobs-row.restart-jobs.restart-done": "Restart Done Task",
+			"cell-menu-jobs-row.move-jobs": "Move Jobs...",
+			"cell-menu-jobs-row.move-jobs.top": "On top",
+			"cell-menu-jobs-row.move-jobs.up": "Above",
+			"cell-menu-jobs-row.move-jobs.down": "Below",
+			"cell-menu-jobs-row.move-jobs.bottom": "On bottom",
+			"cell-menu-jobs-row.delete-job": "Delete Job",
+			"cell-menu-jobs-row.job-errors": "Error Tasks And Hosts",
+			"cell-menu-jobs-row.job-errors.error-hosts": "Show Error Hosts",
+			"cell-menu-jobs-row.job-errors.reset-error-hosts": "Reset Error Hosts",
+			"cell-menu-jobs-row.job-errors.restart-errors": "Restart Error Tasks",
+			"cell-menu-jobs-row.view-job-reports": "View Job Reports",
+			"cell-menu-jobs-row.view-job-history": "View Job History...",
+			"cell-menu-jobs-row.view-job-properties": "View Job Properties...",
+			"cell-menu-jobs-row.view-job-properties-more": "View Detailed Job Properties...",
+			"cell-menu-jobs-row-other.job-menu": "Job Menu",
+			"cell-menu-jobs-row-other.add-job": "Add Job",
+			"cell-menu-jobs-row-other.add-asset": "Add Asset",
+			"cell-menu-jobs-row-other.add-script": "Add Script",
+			"cell-menu-jobs-row-other.lock-view": "Lock View",
+			"cell-menu-jobs-row-other.save-view": "Save View",
+			"cell-menu-jobs-row-other.reload-view": "Reload View",
+			"cell-menu-jobs-row-other.selection-style": "Selection Style",
+			"cell-menu-jobs-row-other.zoom-extends": "Zoom Extends",
+			"cell-menu-jobs-row-other.curved-connections": "Curved Connections",
+			"cell-menu-jobs-row-other.minimap": "Minimap",
+			"cell-menu-jobs-row-other.elided-text": "Elided Text",
+			"cell-tasks.cell-name": "Tasks",
+			"cell-tasks.columns.name": "Task Name",
+			"cell-tasks.columns.starts": "Starts",
+			"cell-tasks.columns.errors": "Errors",
+			"cell-tasks.columns.progress": "Progress",
+			"cell-tasks.columns.status": "Status",
+			"cell-tasks.columns.running": "Running Time",
+			"cell-tasks.columns.started": "Started Date/Time",
+			"cell-tasks.columns.done": "Done Date/Time",
+			"cell-tasks.columns.host": "Latest Activity Host",
+			"cell-tasks.columns.details": "Details",
+			"cell-task-details.cell-name": "Task Details",
+			"cell-task-details.skip": "Skip this task",
+			"cell-task-details.restart": "Restart this task",
+			"cell-task-details.infos": "State: %1 | Starts: %2 | Last host: %3 | Time: %4",
+			"cell-task-details.infos.host.default": "no host",
+			"cell-task-details.output_num": "Job History",
+			"cell-task-details.tabs.exec": "Executable",
+			"cell-task-details.tabs.output": "Output",
+			"cell-task-details.tabs.log": "Log",
+			"cell-task-details.tabs.error_hosts": "Error Hosts",
+			"cell-task-details.tabs.listen": "Listen",
+			"cell-task-details.empty.output": "Task output is empty.",
+			"cell-task-details.empty.log": "Task log is empty.",
+			"cell-task-details.empty.error_hosts": "Task has no error hosts.",
+			"cell-task-details.empty.listen": "Functionality absent.",
+			"cell-task-details.exec.name": "Name",
+			"cell-task-details.exec.capacity": "Capacity",
+			"cell-task-details.exec.service": "Service",
+			"cell-task-details.exec.parser": "Parser",
+			"cell-task-details.exec.directory": "Directory",
+			"cell-task-details.exec.raw": "Raw Object",
+			"cell-menu-tasks-row.skip": "Skip selected task(s)",
+			"cell-menu-tasks-row.restart": "Restart selected task(s)",
+			"cell-menu-tasks-row.view-task-reports": "View Task Reports",
+			"cell-menu-tasks-row.view-task-history": "View Task History...",
+			"cell-menu-tasks-row.view-task-properties": "View Task Properties...",
+			"cell-menu-tasks-row.view-task-properties-more": "View Detailed Task Properties...",
+			"cell-menu-tasks-row-other.task-menu": "Tasks Menu",
+			"cell-monitors.cell-name": "Monitors",
+			"cell-monitors.columns.id": "ID",
+			"cell-monitors.columns.name": "Monitor Name",
+			"cell-monitors.columns.uid": "User ID",
+			"cell-monitors.columns.user": "User",
+			"cell-monitors.columns.ip": "IP Address",
+			"cell-monitors.columns.register": "Register Date/Time",
+			"cell-monitors.columns.launch": "Launch Date/Time",
+			"cell-monitors.columns.update": "Update Date/Time",
+			"cell-monitors.columns.activity": "Activity Date/Time",
+			"cell-monitors.columns.host": "Latest Activity Host",
+			"cell-monitors.columns.events": "Events",
+			"cell-monitors.columns.priority": "Priority",
+			"cell-monitors.columns.details": "Details",
+			"cell-menu-monitors-row.view-monitor-reports": "View Monitor Reports",
+			"cell-menu-monitors-row.view-monitor-history": "View Monitor History...",
+			"cell-menu-monitors-row.view-monitor-properties": "View Monitor Properties...",
+			"cell-menu-monitors-row.view-monitor-properties-more": "View Detailed Monitor Properties...",
+			"cell-menu-monitors-row-other.monitor-menu": "Monitors Menu",
+			"cell-renders.cell-name": "Renders",
+			"cell-renders.columns.id": "ID",
+			"cell-renders.columns.name": "Render Name",
+			"cell-renders.columns.user": "User",
+			"cell-renders.columns.status": "Status",
+			"cell-renders.columns.os": "Operating System",
+			"cell-renders.columns.interface": "Interface",
+			"cell-renders.columns.mac": "MAC Address",
+			"cell-renders.columns.ip": "IP Address",
+			"cell-renders.columns.tasks": "Tasks Run",
+			"cell-renders.columns.register": "Register Date/Time",
+			"cell-renders.columns.launch": "Launch Date/Time",
+			"cell-renders.columns.update": "Update Date/Time",
+			"cell-renders.columns.idle": "Idle Date/Time",
+			"cell-renders.columns.busy": "Busy Date/Time",
+			"cell-renders.columns.wol-op": "WOL Operation Date/Time",
+			"cell-renders.columns.idle-cpu": "CPU Idle",
+			"cell-renders.columns.busy-cpu": "CPU Busy",
+			"cell-renders.columns.idle-mem": "Memory Idle",
+			"cell-renders.columns.busy-mem": "Memory Busy",
+			"cell-renders.columns.idle-swp": "Swap Idle",
+			"cell-renders.columns.busy-swp": "Swap Busy",
+			"cell-renders.columns.idle-hddgb": "HDD GB Idle",
+			"cell-renders.columns.busy-hddgb": "HDD GB Busy",
+			"cell-renders.columns.idle-hddio": "HDD IO Idle",
+			"cell-renders.columns.busy-hddio": "HDD IO Busy",
+			"cell-renders.columns.capacity": "Capacity",
+			"cell-renders.columns.priority": "Priority",
+			"cell-renders.columns.details": "Details",
+			"cell-menu-renders-row.start-render": "Start Render Node",
+			"cell-menu-renders-row.pause-render": "Suspend Render Node",
+			"cell-menu-renders-row.exit": "Exit Client",
+			"cell-menu-renders-row.delete": "Delete Render Node From Afanasy Database",
+			"cell-menu-renders-row.nimby": "Task Execution Settings",
+			"cell-menu-renders-row.nimby.nimby": "Run Only Owner Tasks (nimby)",
+			"cell-menu-renders-row.nimby.NIMBY": "Do Not Run Any Tasks (NIMBY)",
+			"cell-menu-renders-row.nimby.free": "Reset Default Setting",
+			"cell-menu-renders-row.eject": "Eject Tasks From Render Node",
+			"cell-menu-renders-row.eject.eject-tasks": "Eject All Running Tasks",
+			"cell-menu-renders-row.eject.eject-tasks-keep-my": "Eject Not My Tasks",
+			"cell-menu-renders-row.launch-cmd": "Launch Command",
+			"cell-menu-renders-row.launch-cmd-exit": "Launch Command And Exit",
+			"cell-menu-renders-row.service": "Service Actions",
+			"cell-menu-renders-row.service.enable": "Enable Service",
+			"cell-menu-renders-row.service.disable": "Disable Service",
+			"cell-menu-renders-row.service.restore-defaults": "Restore Default Farm Settings",
+			"cell-menu-renders-row.power": "Power Actions",
+			"cell-menu-renders-row.power.wol-sleep": "Wake-On-Lan Sleep",
+			"cell-menu-renders-row.power.wol-wake": "Wake-On-Lan Wake",
+			"cell-menu-renders-row.power.reboot": "Reboot Machine",
+			"cell-menu-renders-row.power.shutdown": "Shutdown Machine",
+			"cell-menu-renders-row.view-render-reports": "View Client Reports",
+			"cell-menu-renders-row.view-render-history": "View Render Node History...",
+			"cell-menu-renders-row.view-render-properties": "View Render Node Properties...",
+			"cell-menu-renders-row.view-render-properties-more": "View Detailed Render Node Properties...",
+			"cell-menu-renders-row-other.render-menu": "Renders Menu",
+			"cell-users.cell-name": "Users",
+			"cell-users.columns.id": "ID",
+			"cell-users.columns.user": "User",
+			"cell-users.columns.jobs": "Jobs Total",
+			"cell-users.columns.register": "Register Date/Time",
+			"cell-users.columns.activity": "Activity Date/Time",
+			"cell-users.columns.host": "Latest Activity Host",
+			"cell-users.columns.solving": "Solving",
+			"cell-users.columns.priority": "Priority",
+			"cell-users.columns.details": "Details",
+			"cell-logs.cell-name": "Logs",
+			"cell-logs.clean": "Clean the log",
+			"cell-logs.tabs.log": "Log",
+			"cell-logs.tabs.netlog": "NetLog",
+			"cell-logs.columns.id": "ID",
+			"cell-logs.columns.cycle": "Cycle",
+			"cell-logs.columns.count": "Count",
+			"cell-logs.columns.register": "Register Date/Time",
+			"cell-logs.columns.activity": "Activity Date/Time",
+			"cell-logs.columns.msg": "Message",
+			"cell-menu-users-row.solve-order": "Solve Jobs By Order",
+			"cell-menu-users-row.solve-priority": "Solve Jobs By Priority",
+			"cell-menu-users-row.solve-capacity": "Solve Need By Running Capacity Total",
+			"cell-menu-users-row.solve-tasks": "Solve Need By Running Tasks Number",
+			"cell-menu-users-row.custom-data": "Set User Custom Data",
+			"cell-menu-users-row.view-user-reports": "View User Reports",
+			"cell-menu-users-row.view-user-history": "View User History...",
+			"cell-menu-users-row.view-user-properties": "View User Properties...",
+			"cell-menu-users-row.view-user-properties-more": "View Detailed User Properties...",
+			"cell-menu-users-row-other.user-menu": "Users Menu"
+		},
+		"fr-FR": {
+			"name": "Français",
+			"example": "Exemple",
+			"filters": "Filtres",
+			"graph": "Graphique circulaire",
+			"search": "Recherche...",
+			"copy-to-clipboard": "Copier dans le Presse-Papier",
+			"selected": "Sélectionné",
+			"select-all": "Tout Sélectionner",
+			"properties": "Propriétés",
+			"tasks_log": "Journal de Tâches",
+			"full_log": "Propriétés Détaillées",
+			"enter-command": "Entrer la commande:",
+			"enter-service-name": "Entrer le nom du service:",
+			"enter-custom-data": "Entrer &quot;custom_data&quot; JSON:",
+			"login-username": "Nom d'Utilisateur",
+			"login-uilevel": "Niveau UI",
+			"login-hostname": "Nom d'Hôte",
+			"empty-fields": "Veuillez remplir tous les champs !",
+			"error": "Erreur",
+			"send": "Envoyer",
+			"confirm": "Confirmer",
+			"confirm-all": "Confirmer pour Tous",
+			"close": "Fermer",
+			"states.ONL": "En Ligne",
+			"states.RDY": "Prêt",
+			"states.RUN": "En Cours",
+			"states.DON": "Terminé",
+			"states.WRN": "Attention",
+			"states.ERR": "Erreur",
+			"states.SKP": "Ignoré",
+			"states.OFF": "Hors Ligne",
+			"states.WDP": "WDP",
+			"states.WTM": "WTM",
+			"states.DRT": "Sale",
+			"states.NbY": "Potentiellement Dangereux",
+			"states.NBY": "POTENTIELLEMENT DANGEREUX",
+			"states.PAU": "Pause",
+			"states.PER": "Erreur de l'Analyseur",
+			"states.PBR": "Mauvais Résultat de l'Analyseur",
+			"states.PSC": "PSC",
+			"states.WFL": "WOLChute",
+			"states.WSL": "WOLDors",
+			"states.WWK": "WOLRéveil",
+			"states.PPA": "Aperçu en Attente d'Approbation",
+			"states.RER": "Prêt à Retraiter l'Erreur",
+			"states.WRC": "WRC",
+			"states.WD": "Dépendances en Attente",
+			"states.WT": "Temps d'Attente",
+			"toolbar.file": "Fichier",
+			"toolbar.file.login-user": "Gérer l'Utilisateur",
+			"toolbar.file.app-refresh": "Recharger l'Application",
+			"toolbar.view": "Affichage",
+			"toolbar.view.new-panel": "Nouveau Panneau",
+			"toolbar.view.new-panel.jobs": "Tâches",
+			"toolbar.view.new-panel.job-details": "Détails de Tâche",
+			"toolbar.view.new-panel.job-dependency-view": "Afficher les Dépendences de Tâche",
+			"toolbar.view.new-panel.job-reports": "Rapports de Tâche",
+			"toolbar.view.new-panel.slaves": "Esclaves",
+			"toolbar.view.new-panel.slave-reports": "Rapports d'Esclaves",
+			"toolbar.view.new-panel.pulses": "Impulsions",
+			"toolbar.view.new-panel.balancers": "Équilibreurs",
+			"toolbar.view.new-panel.limits": "Limites",
+			"toolbar.view.new-panel.console": "Console",
+			"toolbar.view.new-panel.remote-commands": "Commandes à Distance",
+			"toolbar.view.new-panel.background-operations": "Opérations en Fond",
+			"toolbar.view.new-panel.cloud": "Cloud",
+			"toolbar.view.lock-panels": "Verrouiller les Panneaux",
+			"toolbar.view.unlock-panels": "Déverrouiller les Panneaux",
+			"toolbar.view.main-toolbar": "Barre d'Outils Principale",
+			"toolbar.view.pinned-layouts": "Dispositions Épinglés",
+			"toolbar.view.open-layout": "Ouvrir une Disposition...",
+			"toolbar.view.save-layout": "Enregistrer une Disposition...",
+			"toolbar.view.save-all-pinned-layouts": "Enregistrer les Dispositions Épinglés...",
+			"toolbar.view.reset-layout": "Réinitialiser la Disposition",
+			"toolbar.scripts": "Scripts",
+			"toolbar.tools": "Outils",
+			"toolbar.tools.super-user-mode": "Mode Super Utilisateur",
+			"toolbar.tools.view-repository-history": "Afficher l'Historique du Dépôt...",
+			"toolbar.tools.view-power-management-history": "Afficher l'Historique de Gestion de l'Alimentation...",
+			"toolbar.tools.view-farm-reports": "Afficher les Rapports de la Ferme...",
+			"toolbar.tools.manage-pools": "Gérer les Pools...",
+			"toolbar.tools.manage-groups": "Gérer les Groupes...",
+			"toolbar.tools.manage-users": "Gérer les Utilisateurs...",
+			"toolbar.tools.manager-user-groups": "Gestionnaire des Groupes d'Utilisateurs...",
+			"toolbar.tools.configure-repository-options": "Configurer les options du Dépôt...",
+			"toolbar.tools.configure-slave-scheduling": "Configurer la Planification des Esclaves...",
+			"toolbar.tools.configure-power-management": "Configurer la Gestion de l'Alimentation...",
+			"toolbar.tools.configure-cloud-providers": "Configurer les Fournisseurs de Cloud...",
+			"toolbar.tools.configure-plugins": "Configurer les Plugins...",
+			"toolbar.tools.configure-events": "Configurer les Événements...",
+			"toolbar.tools.configure-script-menus": "Configurer les Menus de Script",
+			"toolbar.tools.perform-pending-job-scan": "Analyser les tâches en attente",
+			"toolbar.tools.perform-house-cleaning": "Effectuer un Nettoyage de la Maison",
+			"toolbar.tools.perform-repository-repair": "Effectuer une Réparation du Dépôt",
+			"toolbar.tools.undelete-jobs": "Restaurer les Travaux",
+			"toolbar.tools.explore-repository-root": "Explorer la Racine du Dépôt",
+			"toolbar.tools.import-settings": "Importer les Configurations...",
+			"toolbar.tools.download-integrated-submission-scripts": "Télécharger les Scripts de Soumission Intégrés...",
+			"toolbar.tools.synchronize-scripts-and-plugin-icons": "Synchroniser les Scripts et les Icônes de Plugin",
+			"toolbar.tools.local-slave-controls": "Contrôles d'Esclaves Locaux...",
+			"toolbar.tools.options": "Options...",
+			"toolbar.help": "Aide",
+			"toolbar.help.language": "Language",
+			"toolbar.help.about": "A Propos",
+			"cell-container.untitled": "Sans Titre",
+			"cell-container.empty": "Cliquez ici pour ajouter un objet",
+			"cell-container.lines-title": "CTRL + Clique: attacher une fenêtre",
+			"cell-menu-add.jobs": "Jobs",
+			"cell-menu-add.monitors": "Moniteurs",
+			"cell-menu-add.renders": "Rendus",
+			"cell-menu-add.users": "Utilisateurs",
+			"cell-menu-add.logs": "Journaux",
+			"cell-menu-add.job-details": "Détails de Tâche",
+			"cell-menu-add.job-dependency-view": "Afficher les Dépendences de Tâche",
+			"cell-menu-add.job-reports": "Rapports de Tâche",
+			"cell-menu-add.slaves": "Esclaves",
+			"cell-menu-add.slave-reports": "Rapports d'Esclaves",
+			"cell-menu-add.pulses": "Impulsions",
+			"cell-menu-add.balancers": "Équilibreurs",
+			"cell-menu-add.limits": "Limites",
+			"cell-menu-add.console": "Console",
+			"cell-menu-add.remote-commands": "Commandes à Distance",
+			"cell-menu-add.background-operations": "Opérations en Fond",
+			"cell-menu-add.cloud": "Cloud",
+			"cell-menu-arrow-other.selected-filter": "Filtre Sélectionné...",
+			"cell-menu-arrow-other.selected-filter.no-filter": "Aucun Filtre",
+			"cell-menu-arrow-other.edit-filters": "Ajouter/Modifier les Filtres...",
+			"cell-menu-arrow-other.clear-filter": "Effacer le Filtre",
+			"cell-menu-arrow-other.clear-search-history": "Effacer l'Historique",
+			"cell-menu-arrow-other.ego-centric-sorting": "Tri Égocentrique",
+			"cell-menu-arrow-other.job-batch-grouping": "Regrouper les Tâches par Lots",
+			"cell-menu-arrow-other.auto-sorting-and-filtering": "Tri Automatique et Filtrage",
+			"cell-menu-arrow-other.human-readable-copying": "Copie Lisible par l'Homme",
+			"cell-menu-arrow-other.graph-view": "Afficher le Graphique",
+			"cell-menu-arrow-other.graph-types": "Types de Graphiques",
+			"cell-menu-arrow-other.pinned-list-layouts": "Dispositions de Liste Épinglées",
+			"cell-menu-arrow-other.pinned-list-layouts.default": "Défaut",
+			"cell-menu-arrow-other.pinned-list-layouts.pin-current-list-layout": "Épingler la Disposition de la Liste Actuelle...",
+			"cell-menu-arrow-other.pinned-list-layouts.reset-current-list-layout": "Réinitialiser la Disposition de la Liste Actuelle",
+			"cell-menu-arrow-other.pinned-list-layouts.save-current-list-layout-as-default": "Enregistrer la Disposition de la Liste Actuelle comme Valeur par Défaut",
+			"cell-menu-arrow-other.pinned-list-layouts.reset-default-list-layout": "Réinitialiser la Disposition de la Liste par Défaut",
+			"cell-menu-arrow-other.open-list-layout": "Ouvrir la Disposition de la Liste...",
+			"cell-menu-arrow-other.save-list-layout": "Enregistrer la Disposition de la Liste...",
+			"cell-filters.cell-name": "Modifier le Filtre...",
+			"cell-filters.filters.select": "Filtre",
+			"cell-filters.filters.new": "Nouveau",
+			"cell-filters.filters.saved": "Enregistrés",
+			"cell-filters.filters.placeholder": "Entrez un nom pour ce filtre ...",
+			"cell-filters.filters.empty": "Sélectionnez un filtre",
+			"cell-filters.filters.add": "Ajouter un Filtre",
+			"cell-filters.filters.remove": "-",
+			"cell-filters.params.contains": "Contient",
+			"cell-filters.params.not-contains": "Ne Contient Pas",
+			"cell-filters.params.starts-with": "Commence Par",
+			"cell-filters.params.ended-by": "Fini Par",
+			"cell-filters.params.equals": "Est Égal À",
+			"cell-filters.params.not-equals": "N'Est Pas Égal À",
+			"cell-filters.params.greater-than": "Est Supérieur À",
+			"cell-filters.params.less-than": "Est Inférieur À",
+			"cell-filters.params.before": "Avant Le",
+			"cell-filters.params.after": "Après Le",
+			"cell-filters.values.empty": "Vide",
+			"cell-jobs.cell-name": "Jobs",
+			"cell-jobs.batch": "lot",
+			"cell-jobs.jobs": "jobs",
+			"cell-jobs.columns.name": "Nom du Job",
+			"cell-jobs.columns.user": "Utilisateur",
+			"cell-jobs.columns.errors": "Erreurs",
+			"cell-jobs.columns.progress": "Progression",
+			"cell-jobs.columns.status": "Statut",
+			"cell-jobs.columns.running": "Temps d'Exécution",
+			"cell-jobs.columns.render": "Temps de Rendu",
+			"cell-jobs.columns.creation": "Date/Heure de Création",
+			"cell-jobs.columns.started": "Date/Heure de Lancement",
+			"cell-jobs.columns.done": "Date/Heure de Fin",
+			"cell-jobs.columns.branch": "Branche",
+			"cell-jobs.columns.capacity": "Capacité",
+			"cell-jobs.columns.priority": "Priorité",
+			"cell-jobs.columns.details": "Détails",
+			"cell-menu-jobs-row.start-job": "Démarrer le Job",
+			"cell-menu-jobs-row.pause-job": "Suspendre le Job",
+			"cell-menu-jobs-row.stop-job": "Stopper le Job",
+			"cell-menu-jobs-row.restart-jobs": "Redémarrer des Tâches du Job...",
+			"cell-menu-jobs-row.restart-jobs.restart": "Toutes les Tâches",
+			"cell-menu-jobs-row.restart-jobs.restart-pause": "Toutes les Tâches et celles en Pause",
+			"cell-menu-jobs-row.restart-jobs.restart-errors": "Tâches Érronés",
+			"cell-menu-jobs-row.restart-jobs.restart-running": "Tâches en Cours",
+			"cell-menu-jobs-row.restart-jobs.restart-skipped": "Tâches Ignorés",
+			"cell-menu-jobs-row.restart-jobs.restart-done": "Tâches Terminés",
+			"cell-menu-jobs-row.move-jobs": "Déplacer les Jobs...",
+			"cell-menu-jobs-row.move-jobs.top": "Tout en Haut",
+			"cell-menu-jobs-row.move-jobs.up": "Au Dessus",
+			"cell-menu-jobs-row.move-jobs.down": "En Dessous",
+			"cell-menu-jobs-row.move-jobs.bottom": "Tout en Bas",
+			"cell-menu-jobs-row.delete-job": "Supprimer le Job",
+			"cell-menu-jobs-row.job-errors": "Erreurs de Tâches et d'Hôtes",
+			"cell-menu-jobs-row.job-errors.error-hosts": "Afficher les Erreurs d'Hôtes",
+			"cell-menu-jobs-row.job-errors.reset-error-hosts": "Réinitialiser les Erreurs d'Hôtes",
+			"cell-menu-jobs-row.job-errors.restart-errors": "Redémarrer les Tâches Erronés",
+			"cell-menu-jobs-row.view-job-reports": "Afficher les Rapports du Job",
+			"cell-menu-jobs-row.view-job-history": "Afficher l'Historique du Job...",
+			"cell-menu-jobs-row.view-job-properties": "Afficher les Propriétés du Job...",
+			"cell-menu-jobs-row.view-job-properties-more": "Afficher les Propriétés Détaillées du Job...",
+			"cell-menu-jobs-row-other.job-menu": "Menu de Jobs",
+			"cell-menu-jobs-row-other.add-job": "Ajouter une Job",
+			"cell-menu-jobs-row-other.add-asset": "Ajouter un Asset",
+			"cell-menu-jobs-row-other.add-script": "Ajouter un Script",
+			"cell-menu-jobs-row-other.lock-view": "Verrouiller la Vue",
+			"cell-menu-jobs-row-other.save-view": "Enregistrer la Vue",
+			"cell-menu-jobs-row-other.reload-view": "Recharger la Vue",
+			"cell-menu-jobs-row-other.selection-style": "Style de Sélection",
+			"cell-menu-jobs-row-other.zoom-extends": "Étendue du Zoom",
+			"cell-menu-jobs-row-other.curved-connections": "Connexions Courbes",
+			"cell-menu-jobs-row-other.minimap": "Minimap",
+			"cell-menu-jobs-row-other.elided-text": "Texte Élidé",
+			"cell-tasks.cell-name": "Tâches",
+			"cell-tasks.columns.name": "Nom de la Tâche",
+			"cell-tasks.columns.starts": "Lancés",
+			"cell-tasks.columns.errors": "Erreurs",
+			"cell-tasks.columns.progress": "Progression",
+			"cell-tasks.columns.status": "Statut",
+			"cell-tasks.columns.running": "Temps d'Exécution",
+			"cell-tasks.columns.started": "Date/Heure de Lancement",
+			"cell-tasks.columns.done": "Date/Heure de Fin",
+			"cell-tasks.columns.host": "Dernière Activité de l'Hôte",
+			"cell-tasks.columns.details": "Détails",
+			"cell-task-details.cell-name": "Détails de Tâches",
+			"cell-task-details.skip": "Ignorer cette tâche",
+			"cell-task-details.restart": "Relancer cette tâche",
+			"cell-task-details.infos": "Statut: %1 | Lancés: %2 | Dernier hôte: %3 | Temps: %4",
+			"cell-task-details.infos.host.default": "aucun hôte",
+			"cell-task-details.output_num": "Historique de Tâche",
+			"cell-task-details.tabs.exec": "Exécutable",
+			"cell-task-details.tabs.output": "Sortie",
+			"cell-task-details.tabs.log": "Journal",
+			"cell-task-details.tabs.error_hosts": "Erreurs d'Hôtes",
+			"cell-task-details.tabs.listen": "Écoute",
+			"cell-task-details.empty.output": "La sortie de la tâche est vide.",
+			"cell-task-details.empty.log": "Le journal de le tâche est vide.",
+			"cell-task-details.empty.error_hosts": "La tâche n'a pas d'erreurs hôtes.",
+			"cell-task-details.empty.listen": "Fonctionnalité absente.",
+			"cell-task-details.exec.name": "Nom",
+			"cell-task-details.exec.capacity": "Capacité",
+			"cell-task-details.exec.service": "Service",
+			"cell-task-details.exec.parser": "Analyseur",
+			"cell-task-details.exec.directory": "Répertoire",
+			"cell-task-details.exec.raw": "Objet Brut",
+			"cell-menu-tasks-row.skip": "Ignorer la(s) tâche(s) sélectionnée(s)",
+			"cell-menu-tasks-row.restart": "Relancer la(s) tâche(s) sélectionnée(s)",
+			"cell-menu-tasks-row.view-task-reports": "Afficher les Rapports de la Tâche",
+			"cell-menu-tasks-row.view-task-history": "Afficher l'Historique de la Tâche...",
+			"cell-menu-tasks-row.view-task-properties": "Afficher les Propriétés de la Tâche...",
+			"cell-menu-tasks-row.view-task-properties-more": "Afficher les Propriétés Détaillées de la Tâche...",
+			"cell-menu-tasks-row-other.task-menu": "Menu de Tâches",
+			"cell-monitors.cell-name": "Moniteurs",
+			"cell-monitors.columns.id": "ID",
+			"cell-monitors.columns.name": "Nom du Moniteur",
+			"cell-monitors.columns.uid": "ID Utilisateur",
+			"cell-monitors.columns.user": "Utilisateur",
+			"cell-monitors.columns.ip": "Adresse IP",
+			"cell-monitors.columns.register": "Date/Heure d'Enregistrement",
+			"cell-monitors.columns.launch": "Date/Heure de Lancement",
+			"cell-monitors.columns.update": "Date/Heure de Mise à Jour",
+			"cell-monitors.columns.activity": "Date/Heure d'Activité",
+			"cell-monitors.columns.host": "Dernière Activité de l'Hôte",
+			"cell-monitors.columns.events": "Événements",
+			"cell-monitors.columns.priority": "Priorité",
+			"cell-monitors.columns.details": "Détails",
+			"cell-menu-monitors-row.view-monitor-reports": "Afficher les Rapports du Moniteur",
+			"cell-menu-monitors-row.view-monitor-history": "Afficher l'Historique du Moniteur...",
+			"cell-menu-monitors-row.view-monitor-properties": "Afficher les Propriétés du Moniteur...",
+			"cell-menu-monitors-row.view-monitor-properties-more": "Afficher les Propriétés Détaillées du Moniteur...",
+			"cell-menu-monitors-row-other.monitor-menu": "Menu de Moniteurs",
+			"cell-renders.cell-name": "Rendus",
+			"cell-renders.columns.id": "ID",
+			"cell-renders.columns.name": "Num du Rendu",
+			"cell-renders.columns.user": "Utilisateur",
+			"cell-renders.columns.status": "Statut",
+			"cell-renders.columns.os": "Système d'Exploitation",
+			"cell-renders.columns.interface": "Interface",
+			"cell-renders.columns.mac": "Adresse MAC",
+			"cell-renders.columns.ip": "Adresse IP",
+			"cell-renders.columns.tasks": "Tâches Exécutées",
+			"cell-renders.columns.register": "Date/Heure de l'Enregistrement",
+			"cell-renders.columns.launch": "Date/Heure de Lancement",
+			"cell-renders.columns.update": "Date/Heure de Mise à Jour",
+			"cell-renders.columns.idle": "Date/Heure de Pause",
+			"cell-renders.columns.busy": "Date/Heure d'Occupation",
+			"cell-renders.columns.wol-op": "Date/Heure Opération WOL",
+			"cell-renders.columns.idle-cpu": "Pause CPU",
+			"cell-renders.columns.busy-cpu": "Occupation CPU",
+			"cell-renders.columns.idle-mem": "Pause Memory",
+			"cell-renders.columns.busy-mem": "Occupation Memory",
+			"cell-renders.columns.idle-swp": "Pause Swap",
+			"cell-renders.columns.busy-swp": "Occupation Swap",
+			"cell-renders.columns.idle-hddgb": "Pause HDD GB",
+			"cell-renders.columns.busy-hddgb": "Occupation HDD GB",
+			"cell-renders.columns.idle-hddio": "Pause HDD IO",
+			"cell-renders.columns.busy-hddio": "Occupation HDD IO",
+			"cell-renders.columns.capacity": "Capacité",
+			"cell-renders.columns.priority": "Priorité",
+			"cell-renders.columns.details": "Détails",
+			"cell-menu-renders-row.start-render": "Démarrer le Client",
+			"cell-menu-renders-row.pause-render": "Suspendre le Client",
+			"cell-menu-renders-row.exit": "Quitter le Client",
+			"cell-menu-renders-row.delete": "Supprimer le Client de la Base de Donnée Afanasy",
+			"cell-menu-renders-row.nimby": "Paramètres d'Exécution des Tâches",
+			"cell-menu-renders-row.nimby.nimby": "Exécuter Uniquement les Tâches du Propriétaire (nimby)",
+			"cell-menu-renders-row.nimby.NIMBY": "Ne pas Exécuter de Tâches (NIMBY)",
+			"cell-menu-renders-row.nimby.free": "Remettre le Réglage par Défaut (free)",
+			"cell-menu-renders-row.eject": "Éjecter les Tâches du Client",
+			"cell-menu-renders-row.eject.eject-tasks": "Éjecter Toutes les Tâches en Cours d'Exécution",
+			"cell-menu-renders-row.eject.eject-tasks-keep-my": "Ne pas Éjecte mes Tâches",
+			"cell-menu-renders-row.launch-cmd": "Lancer une Commande",
+			"cell-menu-renders-row.launch-cmd-exit": "Lancer une Commande et Quitter",
+			"cell-menu-renders-row.service": "Actions du Service",
+			"cell-menu-renders-row.service.enable": "Activer un Service",
+			"cell-menu-renders-row.service.disable": "Désactiver un Service",
+			"cell-menu-renders-row.service.restore-defaults": "Restaurer les Paramètres par Défaut",
+			"cell-menu-renders-row.power": "Actions d'Alimentation",
+			"cell-menu-renders-row.power.wol-sleep": "Wake-On-Lan Mettre en Sommeil",
+			"cell-menu-renders-row.power.wol-wake": "Wake-On-Lan Réveiller",
+			"cell-menu-renders-row.power.reboot": "Redémarrer la Machine",
+			"cell-menu-renders-row.power.shutdown": "Arrêter la Machine",
+			"cell-menu-renders-row.view-render-reports": "Afficher les Rapports du Client",
+			"cell-menu-renders-row.view-render-history": "Afficher l'Historique du Client...",
+			"cell-menu-renders-row.view-render-properties": "Afficher les Propriétés du Client...",
+			"cell-menu-renders-row.view-render-properties-more": "Afficher les Propriétés Détaillées du Client...",
+			"cell-menu-renders-row-other.render-menu": "Menu de Rendus",
+			"cell-users.cell-name": "Utilisateurs",
+			"cell-users.columns.id": "ID",
+			"cell-users.columns.user": "Utilisateur",
+			"cell-users.columns.jobs": "Tâches Total",
+			"cell-users.columns.register": "Date/Heure d'Enregistrement",
+			"cell-users.columns.activity": "Date/Heure d'Activité",
+			"cell-users.columns.host": "Dernière Activité de l'Hôte",
+			"cell-users.columns.solving": "Résolution",
+			"cell-users.columns.priority": "Priorité",
+			"cell-users.columns.details": "Détails",
+			"cell-logs.cell-name": "Journaux",
+			"cell-logs.clean": "Nettoyer le journal",
+			"cell-logs.tabs.log": "Journal",
+			"cell-logs.tabs.netlog": "Journal Net",
+			"cell-logs.columns.id": "ID",
+			"cell-logs.columns.cycle": "Cycle",
+			"cell-logs.columns.count": "Compteur",
+			"cell-logs.columns.register": "Date/Heure d'Enregistrement",
+			"cell-logs.columns.activity": "Date/Heure d'Activité",
+			"cell-logs.columns.msg": "Message",
+			"cell-menu-users-row.solve-order": "Traîter les Tâches dans l'Ordre",
+			"cell-menu-users-row.solve-priority": "Traîter les Tâches par Priorité",
+			"cell-menu-users-row.solve-capacity": "Traîter les Tâches en Fonction de la Capacité Totale",
+			"cell-menu-users-row.solve-tasks": "Traîter les Tâches en Fonction de Leur Nombre",
+			"cell-menu-users-row.custom-data": "Définir les Données de l'Utilisateur",
+			"cell-menu-users-row.view-user-reports": "Afficher les Rapports de l'Utilisateur",
+			"cell-menu-users-row.view-user-history": "Afficher l'Historique de l'Utilisateur...",
+			"cell-menu-users-row.view-user-properties": "Afficher les Propriétés de l'Utilisateur...",
+			"cell-menu-users-row.view-user-properties-more": "Afficher les Propriétés Détaillées de l'Utilisateur...",
+			"cell-menu-users-row-other.user-menu": "Menu d'Utilisateurs"
+		}
+	},
+	"toolbar": {
+		"file": {
+			"name": "toolbar.file",
+			"children": {
+				"login-user": {
+					"name": "toolbar.file.login-user",
+					"icon": "user",
+					"attrs": {
+						"onclick-function": "[&quot;login_user&quot;]"
+					}
+				},
+				"s1": "separator",
+				"app-refresh": {
+					"name": "toolbar.file.app-refresh",
+					"icon": "ref",
+					"attrs": {
+						"onclick-function": "[&quot;app_refresh&quot;]"
+					}
+				}
+			}
+		},
+		"view": {
+			"name": "toolbar.view",
+			"children": {
+				"new-panel": {
+					"name": "toolbar.view.new-panel",
+					"icon": "win",
+					"children": "cell-menu-add.children"
+				},
+				"lock-panel": {
+					"name": "toolbar.view.lock-panels",
+					"icon": "lock",
+					"shortcut": "Alt+`",
+					"attrs": {
+						"onclick-function": "[&quot;win_lock&quot;]"
+					}
+				},
+				"unlock-panel": {
+					"name": "toolbar.view.unlock-panels",
+					"icon": "unlock",
+					"shortcut": "Alt+`",
+					"attrs": {
+						"onclick-function": "[&quot;win_lock&quot;]"
+					}
+				},
+				"main-toolbar": {
+					"name": "toolbar.view.main-toolbar",
+					"icon": "split",
+					"class": "menu-check",
+					"attrs": {
+						"onclick-function": "[&quot;win_main_toolbar&quot;]"
+					}
+				},
+				"s1": "separator",
+				"pinned-layouts": {
+					"name": "toolbar.view.pinned-layouts",
+					"icon": "flag",
+					"children": {}
+				},
+				"open-layout": {
+					"name": "toolbar.view.open-layout",
+					"icon": "folder",
+					"class": "disabled"
+				},
+				"save-layout": {
+					"name": "toolbar.view.save-layout",
+					"icon": "floppy",
+					"class": "disabled"
+				},
+				"save-all-pinned-layouts": {
+					"name": "toolbar.view.save-all-pinned-layouts",
+					"icon": "dfloppy",
+					"class": "disabled"
+				},
+				"reset-layout": {
+					"name": "toolbar.view.reset-layout",
+					"icon": "ref",
+					"class": "disabled"
+				}
+			}
+		},
+		"scripts": {
+			"name": "toolbar.scripts",
+			"class": "disabled",
+			"children": {}
+		},
+		"tools": {
+			"name": "toolbar.tools",
+			"class": "disabled",
+			"children": {}
+		},
+		"help": {
+			"name": "toolbar.help",
+			"children": {
+				"language": {
+					"name": "toolbar.help.language",
+					"children-prefix": "flags",
+					"children-icon-class": "icon-color",
+					"children": {
+						"en-US": {
+							"name": "English",
+							"icon": "us",
+							"attrs": {
+								"onclick-function": "[&quot;language_load&quot;,&quot;en-US&quot;]"
+							}
+						},
+						"fr-FR": {
+							"name": "Français",
+							"icon": "fr",
+							"attrs": {
+								"onclick-function": "[&quot;language_load&quot;,&quot;fr-FR&quot;]"
+							}
+						}
+					}
+				},
+				"about": {
+					"name": "toolbar.help.about",
+					"icon": "information",
+					"attrs": {
+						"onclick-function": "[&quot;app_about&quot;]"
+					}
+				}
+			}
+		}
+	},
+	"cell-container": {
+		"untitled": "cell-container.untitled",
+		"empty": "cell-container.empty",
+		"lines-title": "cell-container.lines-title"
+	},
+	"cell-menu-add": {
+		"name": "cell-menu-add",
+		"children": {
+			"jobs": {
+				"name": "cell-menu-add.jobs",
+				"icon": "cardboard",
+				"attrs": {
+					"onclick-function": "[&quot;win_add&quot;,&quot;jobs&quot;,true]"
+				}
+			},
+			"monitors": {
+				"name": "cell-menu-add.monitors",
+				"icon": "monitor",
+				"attrs": {
+					"onclick-function": "[&quot;win_add&quot;,&quot;monitors&quot;,true]"
+				}
+			},
+			"renders": {
+				"name": "cell-menu-add.renders",
+				"icon": "serv",
+				"attrs": {
+					"onclick-function": "[&quot;win_add&quot;,&quot;renders&quot;,true]"
+				}
+			},
+			"users": {
+				"name": "cell-menu-add.users",
+				"icon": "user",
+				"attrs": {
+					"onclick-function": "[&quot;win_add&quot;,&quot;users&quot;,true]"
+				}
+			},
+			"logs": {
+				"name": "cell-menu-add.logs",
+				"icon": "log",
+				"attrs": {
+					"onclick-function": "[&quot;win_add&quot;,&quot;logs&quot;,true]"
+				}
+			},
+			"s2": "separator",
+			"pulses": {
+				"name": "cell-menu-add.pulses",
+				"icon": "heart",
+				"class": "disabled"
+			},
+			"balancers": {
+				"name": "cell-menu-add.balancers",
+				"icon": "law",
+				"class": "disabled"
+			},
+			"limits": {
+				"name": "cell-menu-add.limits",
+				"icon": "limit",
+				"class": "disabled"
+			},
+			"s3": "separator",
+			"console": {
+				"name": "cell-menu-add.console",
+				"icon": "win",
+				"class": "disabled"
+			},
+			"remote-commands": {
+				"name": "cell-menu-add.remote-commands",
+				"icon": "wireless",
+				"class": "disabled"
+			},
+			"background-operations": {
+				"name": "cell-menu-add.background-operations",
+				"icon": "background",
+				"class": "disabled"
+			},
+			"s4": "separator",
+			"cloud": {
+				"name": "cell-menu-add.cloud",
+				"class": "disabled"
+			}
+		}
+	},
+	"cell-graph": {},
+	"cell-menu-arrow-other": {
+		"name": "cell-menu-arrow-other",
+		"attrs": {
+			"context-reference": "arrow"
+		},
+		"children": {
+			"pinned-filters": {
+				"name": "cell-menu-arrow-other.selected-filter",
+				"icon": "flag",
+				"children": {}
+			},
+			"s1": "separator",
+			"edit-filter": {
+				"name": "cell-menu-arrow-other.edit-filters",
+				"icon": "fun",
+				"attrs": {
+					"onclick-function": "[&quot;win_filters&quot;,&quot;edit&quot;]"
+				}
+			},
+			"clear-filter": {
+				"name": "cell-menu-arrow-other.clear-filter",
+				"icon": "trash"
+			},
+			"s2": "separator",
+			"clear-search-history": {
+				"name": "cell-menu-arrow-other.clear-search-history",
+				"class": "disabled"
+			},
+			"s3": "separator",
+			"ego-centric-sorting": {
+				"name": "cell-menu-arrow-other.ego-centric-sorting",
+				"icon": "user",
+				"class": "disabled"
+			},
+			"job-batch-grouping": {
+				"name": "cell-menu-arrow-other.job-batch-grouping",
+				"class": "disabled"
+			},
+			"auto-sorting-and-filtering": {
+				"name": "cell-menu-arrow-other.auto-sorting-and-filtering",
+				"class": "menu-check disabled"
+			},
+			"human-readable-copying": {
+				"name": "cell-menu-arrow-other.human-readable-copying",
+				"class": "menu-check disabled"
+			},
+			"s4": "separator",
+			"graph-view": {
+				"name": "cell-menu-arrow-other.graph-view",
+				"icon": "circ",
+				"class": "disabled"
+			},
+			"graph-types": {
+				"name": "cell-menu-arrow-other.graph-types",
+				"icon": "circ",
+				"class": "disabled",
+				"children": {}
+			},
+			"s5": "separator",
+			"pinned-list-layouts": {
+				"name": "cell-menu-arrow-other.pinned-list-layouts",
+				"icon": "flag",
+				"class": "disabled",
+				"children": {
+					"default": {
+						"name": "cell-menu-arrow-other.pinned-list-layouts.default",
+						"icon": "flag"
+					},
+					"s1": "separator",
+					"pin-current-list-layout": "cell-menu-arrow-other.pinned-list-layouts.pin-current-list-layout",
+					"reset-current-list-layout": "cell-menu-arrow-other.pinned-list-layouts.reset-current-list-layout",
+					"s2": "separator",
+					"save-current-list-layout-as-default": "cell-menu-arrow-other.pinned-list-layouts.save-current-list-layout-as-default",
+					"reset-default-list-layout": "cell-menu-arrow-other.pinned-list-layouts.reset-default-list-layout"
+				}
+			},
+			"open-list-layout": {
+				"name": "cell-menu-arrow-other.open-list-layout",
+				"class": "disabled"
+			},
+			"save-list-layout": {
+				"name": "cell-menu-arrow-other.save-list-layout",
+				"class": "disabled"
+			}
+		}
+	},
+	"cell-jobs": {
+		"batch": "cell-jobs.batch",
+		"jobs": "cell-jobs.jobs"
+	},
+	"cell-menu-jobs-row": {
+		"name": "cell-menu-jobs-row",
+		"attrs": {
+			"context-reference": "jobs"
+		},
+		"children": {
+			"start-job": {
+				"name": "cell-menu-jobs-row.start-job",
+				"icon": "rarrow",
+				"shortcut": "Ctrl+M",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;start&quot;]"
+				}
+			},
+			"pause-job": {
+				"name": "cell-menu-jobs-row.pause-job",
+				"icon": "pause",
+				"shortcut": "Ctrl+S",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;pause&quot;]"
+				}
+			},
+			"stop-job": {
+				"name": "cell-menu-jobs-row.stop-job",
+				"icon": "stop",
+				"shortcut": "Ctrl+E",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;stop&quot;]"
+				}
+			},
+			"s1": "separator",
+			"move-jobs": {
+				"name": "cell-menu-jobs-row.move-jobs",
+				"icon": "ns-resize",
+				"class": "disabled",
+				"children": {
+					"top": {
+						"name": "cell-menu-jobs-row.move-jobs.top",
+						"icon": "dup",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;move&quot;,&quot;move_jobs_top&quot;]"
+						}
+					},
+					"up": {
+						"name": "cell-menu-jobs-row.move-jobs.up",
+						"icon": "up",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;move&quot;,&quot;move_jobs_up&quot;]"
+						}
+					},
+					"down": {
+						"name": "cell-menu-jobs-row.move-jobs.down",
+						"icon": "down",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;move&quot;,&quot;move_jobs_down&quot;]"
+						}
+					},
+					"bottom": {
+						"name": "cell-menu-jobs-row.move-jobs.bottom",
+						"icon": "ddown",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;move&quot;,&quot;move_jobs_botttom&quot;]"
+						}
+					}
+				}
+			},
+			"restart-jobs": {
+				"name": "cell-menu-jobs-row.restart-jobs",
+				"icon": "ref",
+				"children": {
+					"restart": {
+						"name": "cell-menu-jobs-row.restart-jobs.restart",
+						"icon": "select-all",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restart&quot;]"
+						}
+					},
+					"restart-pause": {
+						"name": "cell-menu-jobs-row.restart-jobs.restart-pause",
+						"icon": "pause",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restart_pause&quot;]"
+						}
+					},
+					"restart-errors": {
+						"name": "cell-menu-jobs-row.restart-jobs.restart-errors",
+						"icon": "hazard",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restart_errors&quot;]"
+						}
+					},
+					"restart-running": {
+						"name": "cell-menu-jobs-row.restart-jobs.restart-running",
+						"icon": "rarrow",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restart_running&quot;]"
+						}
+					},
+					"restart-skipped": {
+						"name": "cell-menu-jobs-row.restart-jobs.restart-skipped",
+						"icon": "share",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restart_skipped&quot;]"
+						}
+					},
+					"restart-done": {
+						"name": "cell-menu-jobs-row.restart-jobs.restart-done",
+						"icon": "correct",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restart_done&quot;]"
+						}
+					}
+				}
+			},
+			"delete-job": {
+				"name": "cell-menu-jobs-row.delete-job",
+				"icon": "trash",
+				"shortcut": "Del",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;delete&quot;]"
+				}
+			},
+			"s2": "separator",
+			"job-errors": {
+				"name": "cell-menu-jobs-row.job-errors",
+				"icon": "hazard",
+				"children": {
+					"error-hosts": {
+						"name": "cell-menu-jobs-row.job-errors.error-hosts",
+						"icon": "document",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;error_hosts&quot;]"
+						}
+					},
+					"reset-error-hosts": {
+						"name": "cell-menu-jobs-row.job-errors.reset-error-hosts",
+						"icon": "dref",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;reset_error_hosts&quot;]"
+						}
+					},
+					"restart-errors": {
+						"name": "cell-menu-jobs-row.job-errors.restart-errors",
+						"icon": "ref",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restart_errors&quot;]"
+						}
+					}
+				}
+			},
+			"s3": "separator",
+			"view-job-reports": {
+				"name": "cell-menu-jobs-row.view-job-reports",
+				"icon": "document",
+				"shortcut": "Ctrl+I",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;]"
+				}
+			},
+			"view-job-history": {
+				"name": "cell-menu-jobs-row.view-job-history",
+				"icon": "history",
+				"shortcut": "Ctrl+Y",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;tasks_log&quot;]"
+				}
+			},
+			"view-job-properties": {
+				"name": "cell-menu-jobs-row.view-job-properties",
+				"icon": "rog",
+				"shortcut": "Ctrl+P",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;data&quot;]"
+				}
+			},
+			"view-job-properties-more": {
+				"name": "cell-menu-jobs-row.view-job-properties-more",
+				"icon": "rog",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;full&quot;]"
+				}
+			},
+			"s4": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-jobs-row-other": {
+		"name": "cell-menu-jobs-row-other",
+		"attrs": {
+			"context-reference": "jobs"
+		},
+		"children": {
+			"job-menu": {
+				"name": "cell-menu-jobs-row-other.job-menu",
+				"icon": "list",
+				"children": "cell-menu-jobs-row.children"
+			},
+			"add-job": {
+				"name": "cell-menu-jobs-row-other.add-job",
+				"icon": "plus",
+				"class": "disabled"
+			},
+			"add-asset": {
+				"name": "cell-menu-jobs-row-other.add-asset",
+				"icon": "plus",
+				"class": "disabled",
+				"children": {}
+			},
+			"add-script": {
+				"name": "cell-menu-jobs-row-other.add-script",
+				"icon": "plus",
+				"class": "disabled"
+			},
+			"s1": "separator",
+			"lock-view": {
+				"name": "cell-menu-jobs-row-other.lock-view",
+				"icon": "lock",
+				"shortcut": "Ctrl+Shift+L",
+				"class": "disabled"
+			},
+			"save-view": {
+				"name": "cell-menu-jobs-row-other.save-view",
+				"icon": "floppy",
+				"shortcut": "Ctrl+Shift+S",
+				"class": "disabled"
+			},
+			"reload-view": {
+				"name": "cell-menu-jobs-row-other.reload-view",
+				"icon": "ref",
+				"shortcut": "Ctrl+Shift+R",
+				"class": "disabled"
+			},
+			"s2": "separator",
+			"selection-style": {
+				"name": "cell-menu-jobs-row-other.selection-style",
+				"class": "disabled",
+				"children": {}
+			},
+			"zoom-extends": {
+				"name": "cell-menu-jobs-row-other.zoom-extends",
+				"class": "disabled",
+				"shortcut": "Ctrl+Z"
+			},
+			"curved-connections": {
+				"name": "cell-menu-jobs-row-other.curved-connections",
+				"class": "disabled"
+			},
+			"minimap": {
+				"name": "cell-menu-jobs-row-other.minimap",
+				"class": "disabled",
+				"children": {}
+			},
+			"elided-text": {
+				"name": "cell-menu-jobs-row-other.elided-text",
+				"class": "disabled",
+				"children": {}
+			},
+			"s3": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-tasks-row": {
+		"name": "cell-menu-tasks-row",
+		"attrs": {
+			"context-reference": "tasks"
+		},
+		"children": {
+			"skip": {
+				"name": "cell-menu-tasks-row.skip",
+				"icon": "share",
+				"shortcut": "Ctrl+S",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;action_task&quot;,&quot;skip&quot;]"
+				}
+			},
+			"restart": {
+				"name": "cell-menu-tasks-row.restart",
+				"icon": "ref",
+				"shortcut": "Ctrl+T",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;action_task&quot;,&quot;restart&quot;]"
+				}
+			},
+			"s1": "separator",
+			"view-task-reports": {
+				"name": "cell-menu-tasks-row.view-task-reports",
+				"icon": "document",
+				"shortcut": "Ctrl+I",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;]"
+				}
+			},
+			"view-task-history": {
+				"name": "cell-menu-tasks-row.view-task-history",
+				"icon": "history",
+				"shortcut": "Ctrl+Y",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;tasks_log&quot;]"
+				}
+			},
+			"view-task-properties": {
+				"name": "cell-menu-tasks-row.view-task-properties",
+				"icon": "rog",
+				"shortcut": "Ctrl+P",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;data&quot;]"
+				}
+			},
+			"view-task-properties-more": {
+				"name": "cell-menu-tasks-row.view-task-properties-more",
+				"icon": "rog",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;full&quot;]"
+				}
+			},
+			"s2": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-tasks-row-other": {
+		"name": "cell-menu-tasks-row-other",
+		"attrs": {
+			"context-reference": "tasks"
+		},
+		"children": {
+			"task-menu": {
+				"name": "cell-menu-tasks-row-other.task-menu",
+				"icon": "list",
+				"children": "cell-menu-tasks-row.children"
+			},
+			"s1": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-monitors-row": {
+		"name": "cell-menu-monitors-row",
+		"attrs": {
+			"context-reference": "monitors"
+		},
+		"children": {
+			"view-monitor-reports": {
+				"name": "cell-menu-monitors-row.view-monitor-reports",
+				"icon": "document",
+				"shortcut": "Ctrl+I",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;]"
+				}
+			},
+			"view-monitor-history": {
+				"name": "cell-menu-monitors-row.view-monitor-history",
+				"icon": "history",
+				"shortcut": "Ctrl+Y",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;tasks_log&quot;]"
+				}
+			},
+			"view-monitor-properties": {
+				"name": "cell-menu-monitors-row.view-monitor-properties",
+				"icon": "rog",
+				"shortcut": "Ctrl+P",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;data&quot;]"
+				}
+			},
+			"view-monitor-properties-more": {
+				"name": "cell-menu-monitors-row.view-monitor-properties-more",
+				"icon": "rog",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;full&quot;]"
+				}
+			},
+			"s1": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-monitors-row-other": {
+		"name": "cell-menu-monitors-row-other",
+		"attrs": {
+			"context-reference": "monitors"
+		},
+		"children": {
+			"monitor-menu": {
+				"name": "cell-menu-monitors-row-other.monitor-menu",
+				"icon": "list",
+				"children": "cell-menu-monitors-row.children"
+			},
+			"s1": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-renders-row": {
+		"name": "cell-menu-renders-row",
+		"attrs": {
+			"context-reference": "renders"
+		},
+		"children": {
+			"start-render": {
+				"name": "cell-menu-renders-row.start-render",
+				"icon": "rarrow",
+				"shortcut": "Ctrl+E",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;paused&quot;,false]"
+				}
+			},
+			"pause-render": {
+				"name": "cell-menu-renders-row.pause-render",
+				"icon": "pause",
+				"shortcut": "Ctrl+S",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;paused&quot;,true]"
+				}
+			},
+			"exit": {
+				"name": "cell-menu-renders-row.exit",
+				"icon": "stop",
+				"shortcut": "Ctrl+E",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;exit&quot;]"
+				}
+			},
+			"delete": {
+				"name": "cell-menu-renders-row.delete",
+				"icon": "trash",
+				"shortcut": "Del",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;delete&quot;]"
+				}
+			},
+			"s1": "separator",
+			"nimby": {
+				"name": "cell-menu-renders-row.nimby",
+				"icon": "random",
+				"children": {
+					"nimby": {
+						"name": "cell-menu-renders-row.nimby.nimby",
+						"icon": "random",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;nimby&quot;,true]"
+						}
+					},
+					"NIMBY": {
+						"name": "cell-menu-renders-row.nimby.NIMBY",
+						"icon": "random",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;NIMBY&quot;,true]"
+						}
+					},
+					"free": {
+						"name": "cell-menu-renders-row.nimby.free",
+						"icon": "dref",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;nimby&quot;,false]"
+						}
+					}
+				}
+			},
+			"eject": {
+				"name": "cell-menu-renders-row.eject",
+				"icon": "eject",
+				"children": {
+					"eject-tasks": {
+						"name": "cell-menu-renders-row.eject.eject-tasks",
+						"icon": "correct",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;eject_tasks&quot;]"
+						}
+					},
+					"eject-tasks-keep-my": {
+						"name": "cell-menu-renders-row.eject.eject-tasks-keep-my",
+						"icon": "cross",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;eject_tasks_keep_my&quot;]"
+						}
+					}
+				}
+			},
+			"s2": "separator",
+			"launch-cmd": {
+				"name": "cell-menu-renders-row.launch-cmd",
+				"icon": "command",
+				"attrs": {
+					"onclick-function": "[&quot;win_confirm&quot;,&quot;launch-cmd&quot;]"
+				}
+			},
+			"launch-cmd-exit": {
+				"name": "cell-menu-renders-row.launch-cmd-exit",
+				"icon": "command",
+				"attrs": {
+					"onclick-function": "[&quot;win_confirm&quot;,&quot;launch-cmd-exit&quot;]"
+				}
+			},
+			"service": {
+				"name": "cell-menu-renders-row.service",
+				"icon": "star",
+				"children": {
+					"enable": {
+						"name": "cell-menu-renders-row.service.enable",
+						"icon": "correct",
+						"attrs": {
+							"onclick-function": "[&quot;win_confirm&quot;,&quot;service-enable&quot;]"
+						}
+					},
+					"disable": {
+						"name": "cell-menu-renders-row.service.disable",
+						"icon": "cross",
+						"attrs": {
+							"onclick-function": "[&quot;win_confirm&quot;,&quot;service-disable&quot;]"
+						}
+					},
+					"restore-defaults": {
+						"name": "cell-menu-renders-row.service.restore-defaults",
+						"icon": "dref",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;restore_defaults&quot;]"
+						}
+					}
+				}
+			},
+			"power": {
+				"name": "cell-menu-renders-row.power",
+				"icon": "power",
+				"children": {
+					"wol-sleep": {
+						"name": "cell-menu-renders-row.power.wol-sleep",
+						"icon": "clock",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;wol_sleep&quot;]"
+						}
+					},
+					"wol-wake": {
+						"name": "cell-menu-renders-row.power.wol-wake",
+						"icon": "bell",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;wol_wake&quot;]"
+						}
+					},
+					"reboot": {
+						"name": "cell-menu-renders-row.power.reboot",
+						"icon": "restart",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;reboot&quot;]"
+						}
+					},
+					"shutdown": {
+						"name": "cell-menu-renders-row.power.shutdown",
+						"icon": "power",
+						"attrs": {
+							"onclick-function": "[&quot;win_right&quot;,&quot;shutdown&quot;]"
+						}
+					}
+				}
+			},
+			"s3": "separator",
+			"view-render-reports": {
+				"name": "cell-menu-renders-row.view-render-reports",
+				"icon": "document",
+				"shortcut": "Ctrl+I",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;]"
+				}
+			},
+			"view-render-history": {
+				"name": "cell-menu-renders-row.view-render-history",
+				"icon": "history",
+				"shortcut": "Ctrl+Y",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;tasks_log&quot;]"
+				}
+			},
+			"view-render-properties": {
+				"name": "cell-menu-renders-row.view-render-properties",
+				"icon": "rog",
+				"shortcut": "Ctrl+P",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;data&quot;]"
+				}
+			},
+			"view-render-properties-more": {
+				"name": "cell-menu-renders-row.view-render-properties-more",
+				"icon": "rog",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;full&quot;]"
+				}
+			},
+			"s4": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"icon": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-renders-row-other": {
+		"name": "cell-menu-renders-row-other",
+		"attrs": {
+			"context-reference": "renders"
+		},
+		"children": {
+			"render-menu": {
+				"name": "cell-menu-renders-row-other.render-menu",
+				"icon": "list",
+				"children": "cell-menu-renders-row.children"
+			},
+			"s1": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-users-row": {
+		"name": "cell-menu-users-row",
+		"attrs": {
+			"context-reference": "users"
+		},
+		"children": {
+			"solve-order": {
+				"name": "cell-menu-users-row.solve-order",
+				"icon": "puzzle",
+				"shortcut": "Ctrl+O",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;solve_method&quot;,&quot;solve_order&quot;]"
+				}
+			},
+			"solve-priority": {
+				"name": "cell-menu-users-row.solve-priority",
+				"icon": "level",
+				"shortcut": "Ctrl+I",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;solve_method&quot;,&quot;solve_priority&quot;]"
+				}
+			},
+			"s1": "separator",
+			"solve-capacity": {
+				"name": "cell-menu-users-row.solve-capacity",
+				"icon": "inbox",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;solve_need&quot;,&quot;solve_capacity&quot;]"
+				}
+			},
+			"solve-tasks": {
+				"name": "cell-menu-users-row.solve-tasks",
+				"icon": "sort",
+				"shortcut": "Ctrl+T",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;solve_need&quot;,&quot;solve_tasksnum&quot;]"
+				}
+			},
+			"s2": "separator",
+			"custom-data": {
+				"name": "cell-menu-users-row.custom-data",
+				"icon": "placeholder",
+				"shortcut": "Ctrl+D",
+				"attrs": {
+					"onclick-function": "[&quot;win_confirm&quot;,&quot;custom-data&quot;]"
+				}
+			},
+			"s3": "separator",
+			"view-user-reports": {
+				"name": "cell-menu-users-row.view-user-reports",
+				"icon": "document",
+				"shortcut": "Ctrl+I",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;]"
+				}
+			},
+			"view-user-history": {
+				"name": "cell-menu-users-row.view-user-history",
+				"icon": "history",
+				"shortcut": "Ctrl+Y",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;tasks_log&quot;]"
+				}
+			},
+			"view-user-properties": {
+				"name": "cell-menu-users-row.view-user-properties",
+				"icon": "rog",
+				"shortcut": "Ctrl+P",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;data&quot;]"
+				}
+			},
+			"view-user-properties-more": {
+				"name": "cell-menu-users-row.view-user-properties-more",
+				"icon": "rog",
+				"class": "disabled",
+				"attrs": {
+					"onclick-function": "[&quot;win_right&quot;,&quot;log&quot;,&quot;full&quot;]"
+				}
+			},
+			"s4": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	},
+	"cell-menu-users-row-other": {
+		"name": "cell-menu-users-row-other",
+		"attrs": {
+			"context-reference": "users"
+		},
+		"children": {
+			"user-menu": {
+				"name": "cell-menu-users-row-other.user-menu",
+				"icon": "list",
+				"children": "cell-menu-users-row.children"
+			},
+			"s1": "separator",
+			"copy": {
+				"name": "copy-to-clipboard",
+				"shortcut": "Ctrl+C",
+				"attrs": {
+					"onclick-function": "[&quot;win_copy&quot;]"
+				}
+			},
+			"select-all": {
+				"name": "select-all",
+				"shortcut": "Ctrl+A",
+				"attrs": {
+					"onclick-function": "[&quot;win_select_all&quot;,&quot;all&quot;]"
+				}
+			}
+		}
+	}
+}
