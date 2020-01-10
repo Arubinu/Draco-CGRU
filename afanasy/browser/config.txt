@@ -238,6 +238,7 @@
 			"toolbar.tools.options": "Options...",
 			"toolbar.help": "Help",
 			"toolbar.help.language": "Language",
+			"toolbar.help.theme": "Themes",
 			"toolbar.help.about": "About",
 			"cell-container.untitled": "Untitled",
 			"cell-container.empty": "Click here to add an item",
@@ -599,6 +600,7 @@
 			"toolbar.tools.options": "Options...",
 			"toolbar.help": "Aide",
 			"toolbar.help.language": "Language",
+			"toolbar.help.theme": "Thèmes",
 			"toolbar.help.about": "A Propos",
 			"cell-container.untitled": "Sans Titre",
 			"cell-container.empty": "Cliquez ici pour ajouter un objet",
@@ -950,6 +952,9 @@
 		},
 		"help": {
 			"name": "toolbar.help",
+			"attrs": {
+				"context-reference": "help"
+			},
 			"children": {
 				"language": {
 					"name": "toolbar.help.language",
@@ -971,6 +976,11 @@
 							}
 						}
 					}
+				},
+				"theme": {
+					"name": "toolbar.help.theme",
+					"icon": "theme",
+					"children": {}
 				},
 				"about": {
 					"name": "toolbar.help.about",

@@ -416,6 +416,24 @@ document.addEventListener( 'DOMContentLoadedAfanasy', ( afanasy ) => {
 		}
 	};
 
+	window.TopHelpContext = ( menu ) => {
+		menu = menu.querySelector( ':scope > [name="theme"] > ul' );
+
+		var html = Handlebars.compile( '{{> menu-each this}}' )( { children: {
+			dcgru: {
+				name: 'Draco CGRU',
+				class: 'active'
+			},
+			original: {
+				name: 'Original',
+				attrs: {
+					onclick: 'document.location.pathname = "/afanasy/browser.bak/index.html"'
+				}
+			}
+		} } );
+		menu.innerHTML = html;
+	};
+
 	window.TopViewContext = ( menu ) => {
 		var locked = document.body.classList.contains( 'locked' );
 		menu.querySelector( '[name="lock-panels"]' ).style.display = ( locked ? 'none' : 'block' );

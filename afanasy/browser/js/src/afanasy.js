@@ -2,7 +2,7 @@ document.addEventListener( 'DOMContentLoaded', ( event ) => {
 	var afanasy = new Event( 'DOMContentLoadedAfanasy' );
 
 	afanasy.global = {
-		source: './afanasy/browser/',
+		source: ( ( document.location.pathname == '/' ) ? './afanasy/browser/' : document.location.pathname.split( '/' ).slice( 0, -1 ).join( '/' ) + '/' ),
 		logs: {},
 		logs_ids: {},
 		nodes_data: {},
@@ -2102,6 +2102,9 @@ document.addEventListener( 'DOMContentLoaded', ( event ) => {
 			return ( wnd );
 		},
 		g_Init: () => {
+			if ( typeof( cgru_Init ) !== 'function' )
+				return ( alert( 'Error loading basic functions !' ) );
+
 			afanasy.system.info( 'HTML body load.' );
 			cgru_Init();
 			afanasy.system.cm_Init();
@@ -2193,6 +2196,7 @@ document.addEventListener( 'DOMContentLoaded', ( event ) => {
 				afanasy.system.xhr.send( obj, afanasy.system.config.received );
 			},
 			received: ( i_obj ) => {
+				//console.log( 'i_obj:', i_obj );
 				if ( i_obj.realm )
 				{
 					if ( g_digest )

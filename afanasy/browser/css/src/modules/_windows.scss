@@ -252,7 +252,7 @@ $status: (
 					td {
 						position: relative;
 						text-align: center;
-						vertical-align: text-top;
+						vertical-align: inherit;
 
 						pre {
 							margin: 2px 0px 4px;
@@ -270,7 +270,10 @@ $status: (
 						}
 
 						&.col-progress {
-							color: #000;
+							&, &.col-progress-text {
+								color: #000 !important;
+							}
+
 							font-size: 11px;
 							line-height: calc( 100% + 6px );
 							text-shadow: initial !important;
@@ -483,7 +486,8 @@ $status: (
 
 .progress {
 	/* Basic layout */
-	display: inline-block;
+	display: block;
+	top: 2px!important;
 	width: 200px;
 	height: 20px;
 
