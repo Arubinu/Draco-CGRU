@@ -104,6 +104,12 @@
 			opacity: 0;
 			transition: opacity .1s ease-in-out;
 		}
+
+		& > .block {
+			display: inline-block;
+			max-width: calc( 100% - 48px );
+			background: initial;
+		}
 	}
 	&.active > .title { background-color: rgb( 45, 45, 45 ); }
 

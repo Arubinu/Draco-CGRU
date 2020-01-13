@@ -47,8 +47,10 @@
 		<div class="empty"><div>{{trans empty}}</div></div>
 		<div class="title">
 			<div class="refresh"></div>
-			<span class="text">{{trans untitled}}</span>
-			<span class="subtext"></span>
+			<div class="block">
+				<span class="text">{{trans untitled}}</span>
+				<span class="subtext"></span>
+			</div>
 			<div class="icon menu-icon close"><img src="{{config 'source'}}images/cross.png" /></div>
 			<div class="icon menu-icon detach"><img src="{{config 'source'}}images/dwin.png" /></div>
 		</div>
